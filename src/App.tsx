@@ -1,8 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+
+import { getConfig } from './tmdb/configuration';
+
+// stylesheets and assets
 import './App.css';
+import logo from './logo.svg';
 
 function App() {
+  const [, setConfig] = useState({});
+
+  useEffect(() => {
+    const fetchConfig = async () => {
+      const result = await getConfig();
+      setConfig(result.data);
+    };
+
+    fetchConfig();
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">

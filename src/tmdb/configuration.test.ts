@@ -4,14 +4,14 @@ import { getConfig } from './configuration'
 jest.mock('axios')
 
 it('can fetch configuration from TMDB', () => {
-  const url = 'https://api.themoviedb.org/3/'
-  const apiKey = '1234'
+  const url = `${process.env.REACT_APP_TMDB_API_URL}/configuration`
+  const apiKey = process.env.REACT_APP_TMDB_API_KEY
 
-  getConfig(apiKey, url)
+  getConfig()
 
   expect(mockAxios.get).toHaveBeenNthCalledWith(
     1,
-    `${url}/configuration`,
-    { params: { api_key: apiKey } }
+    url,
+    { params: { api_key: apiKey } },
   )
 })
