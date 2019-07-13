@@ -6,12 +6,14 @@ import { getConfig } from './tmdb/configuration';
 import './App.css';
 import logo from './logo.svg';
 
+const  { REACT_APP_TMDB_API_KEY } = process.env
+
 function App() {
   const [, setConfig] = useState({});
 
   useEffect(() => {
     const fetchConfig = async () => {
-      const result = await getConfig();
+      const result = await getConfig(REACT_APP_TMDB_API_KEY as string);
       setConfig(result.data);
     };
 
