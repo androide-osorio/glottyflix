@@ -1,6 +1,9 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "Polyglot Binge-watcher",
+  "name": "The Polyglot Binge-watcher",
+  "description": "Find any TV show in the language you are currently learning.",
+  "lang": "en",
+  "categories": ["language", "education"],
   "icons": [
     {
       "src": "favicon.ico",
