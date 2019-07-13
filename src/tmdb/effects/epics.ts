@@ -1,6 +1,7 @@
 import { AxiosResponse } from 'axios';
+import { Action } from 'redux';
 import { ofType } from 'redux-observable';
-import { from, of } from 'rxjs';
+import { from, of, Observable } from 'rxjs';
 import { map, exhaustMap, catchError } from 'rxjs/operators'
 
 import { getConfig } from './../configuration';
@@ -9,9 +10,9 @@ import { fetchConfigSuccess, fetchConfigFail } from '../actions/actions';
 
 const  { REACT_APP_TMDB_API_KEY } = process.env
 
-export const fetchConfigEpic = actions$ => actions$.pipe(
+export const fetchConfigEpic = (actions$: Observable<Action>) => actions$.pipe(
   ofType(TMDBActionTypes.FETCH_CONFIG),
-  exhaustMap(_ => from(getConfig(REACT_APP_TMDB_API_KEY))),
+  exhaustMap(_ => from(getConfig(REACT_APP_TMDB_API_KEY as string))),
   map((response: AxiosResponse<any>) => response.data),
   map(data => fetchConfigSuccess(data)),
   catchError(error => of(fetchConfigFail(error))),

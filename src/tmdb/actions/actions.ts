@@ -1,5 +1,4 @@
 import { curry } from 'ramda'
-import { Action } from 'redux'
 import { TMDBActionTypes } from './actionTypes';
 
 
