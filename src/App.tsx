@@ -1,24 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 
-import { getConfig } from './tmdb/configuration';
+import { fetchConfig } from './tmdb/store';
 
 // stylesheets and assets
 import './App.css';
 import logo from './logo.svg';
 
-const  { REACT_APP_TMDB_API_KEY } = process.env
-
 function App() {
-  const [, setConfig] = useState({});
-
-  useEffect(() => {
-    const fetchConfig = async () => {
-      const result = await getConfig(REACT_APP_TMDB_API_KEY as string);
-      setConfig(result.data);
-    };
-
-    fetchConfig();
-  }, []);
+  const dispatch = useDispatch()
+  const fetchConfigFromApi = useCallback(
+    () => dispatch(fetchConfig({})),
+    [dispatch]
+  )
 
   return (
     <div className="App">
@@ -35,6 +29,7 @@ function App() {
         >
           Learn React
         </a>
+        <button onClick={fetchConfigFromApi}>fetch Config</button>
       </header>
     </div>
   );

@@ -8,7 +8,7 @@ export const rootEpic = combineEpics(
 )
 
 export const rootReducer = combineReducers({
-  configReducer,
+  config: configReducer,
 })
 
 const epicMiddleware = createEpicMiddleware()
