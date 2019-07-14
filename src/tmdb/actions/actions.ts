@@ -4,7 +4,7 @@ import { Action } from 'redux';
 
 
 const createAction = curry(
-  <S, T>(type: S, payload: T) => ({ type, ...(payload || {}) } as Action)
+  <S, T>(type: S, payload: T) => ({ type, payload } as Action)
 )
 
 // ---------------------------------------------

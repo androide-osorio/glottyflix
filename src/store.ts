@@ -11,11 +11,15 @@ export const rootReducer = combineReducers({
   config: configReducer,
 })
 
+// enhancers configuration
 const epicMiddleware = createEpicMiddleware()
 const composeEnhancers = process.env.NODE_ENV === 'development'
   ? (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
   : null
 
+// -----------------------------------
+
+// function to configure the global store
 export default function configureStore() {
   const store = createStore(
     rootReducer,
@@ -24,6 +28,7 @@ export default function configureStore() {
     ),
   )
 
+  // run epics
   epicMiddleware.run(rootEpic);
 
   return store;
