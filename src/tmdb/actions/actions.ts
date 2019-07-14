@@ -1,11 +1,5 @@
-import { curry } from 'ramda'
 import { TMDBActionTypes } from './actionTypes';
-import { Action } from 'redux';
-
-
-const createAction = curry(
-  <S, T>(type: S, payload: T) => ({ type, payload } as Action)
-)
+import { createAction } from '../../store/actions'
 
 // ---------------------------------------------
 
