@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import { combineEpics, createEpicMiddleware } from 'redux-observable'
 
-import { configReducer, fetchConfigEpic } from './tmdb/store'
+import { configReducer, fetchConfigEpic } from '../tmdb/store'
 
 export const rootEpic = combineEpics(
   fetchConfigEpic,
@@ -20,7 +20,7 @@ const composeEnhancers = process.env.NODE_ENV === 'development'
 // -----------------------------------
 
 // function to configure the global store
-export default function configureStore() {
+export function configureStore() {
   const store = createStore(
     rootReducer,
     composeEnhancers(
