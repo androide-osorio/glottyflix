@@ -1,0 +1,12 @@
+.SearchResults {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+  align-items: center;
+  justify-items: center;
+  gap: 1rem;
+}
+
+.SearchResults__item:focus {
+  box-shadow: 0 4px 7px slateblue;
+}
