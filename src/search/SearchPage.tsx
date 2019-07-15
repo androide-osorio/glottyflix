@@ -2,8 +2,10 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { useSearchForm } from './hooks/useForm'
-import Search from './components/Search/Search'
 import { discover, selectTvShows } from '../tmdb/store';
+
+import Search from './components/Search/Search'
+import SearchResults from './components/SearchResults/SearchResults'
 
 const langs = [
   { code: 'en', name: '🇺🇸 English' },
@@ -36,8 +38,9 @@ function SearchPage() {
       languages={langs}
       onChange={handleInputChange}
       onSubmit={handleSubmit} />
+  
     <section>
-      {JSON.stringify(tvShows)}
+      <SearchResults items={tvShows} />
     </section>
   </div>
   );
