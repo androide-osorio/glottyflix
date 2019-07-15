@@ -40,6 +40,7 @@ function SearchPage() {
       onSubmit={handleSubmit} />
   
     <section>
+      {tvShows.length > 0 && <h3>found {tvShows.length} TV Shows</h3>}
       <SearchResults items={tvShows} />
     </section>
   </div>
