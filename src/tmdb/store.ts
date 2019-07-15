@@ -27,4 +27,6 @@ export const tmdbReducersMap = {
   tvshows: tvShowsReducer,
 }
 
+export const selectTvShows = (state: any) => state.tvshows.items
+
 export * from './effects'

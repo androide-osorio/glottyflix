@@ -1,9 +1,9 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 import { useSearchForm } from './hooks/useForm'
 import Search from './components/Search/Search'
-import { discover } from '../tmdb/store';
+import { discover, selectTvShows } from '../tmdb/store';
 
 const langs = [
   { code: 'en', name: '🇺🇸 English' },
@@ -14,6 +14,7 @@ const langs = [
 
 function SearchPage() {
   const dispatch = useDispatch()
+  const tvShows = useSelector(selectTvShows)
 
   const callDiscover = (inputs: any) => {
     const { language } = inputs
@@ -35,6 +36,9 @@ function SearchPage() {
       languages={langs}
       onChange={handleInputChange}
       onSubmit={handleSubmit} />
+    <section>
+      {JSON.stringify(tvShows)}
+    </section>
   </div>
   );
 }
