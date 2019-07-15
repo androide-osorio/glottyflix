@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import { combineEpics, createEpicMiddleware } from 'redux-observable'
 
-import { configReducer, fetchConfigEpic } from '../tmdb/store'
+import { configReducer, fetchConfigEpic, tvShowsReducer } from '../tmdb/store'
 
 export const rootEpic = combineEpics(
   fetchConfigEpic,
@@ -9,6 +9,7 @@ export const rootEpic = combineEpics(
 
 export const rootReducer = combineReducers({
   config: configReducer,
+  tvshows: tvShowsReducer,
 })
 
 // enhancers configuration

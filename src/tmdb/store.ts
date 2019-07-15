@@ -3,7 +3,8 @@ import { Dispatch } from 'redux';
 
 const mapStateToProps = (state: any) => {
   return {
-    config: () => state.config
+    config: () => state.config,
+    tvShows: () => state.tvShows,
   }
 }
 
@@ -18,5 +19,8 @@ export const connectToConfig = connect(
 )
 
 export * from './actions/actions'
-export * from './reducers/reducer'
+
+export * from './reducers/config'
+export * from './reducers/tvshows'
+
 export * from './effects/epics'
