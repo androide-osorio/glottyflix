@@ -1,5 +1,7 @@
 import { connect } from 'react-redux'
 import { Dispatch } from 'redux';
+import { configReducer } from './reducers/config';
+import { tvShowsReducer } from './reducers/tvshows';
 
 const mapStateToProps = (state: any) => {
   return {
@@ -20,7 +22,9 @@ export const connectToConfig = connect(
 
 export * from './actions/actions'
 
-export * from './reducers/config'
-export * from './reducers/tvshows'
+export const tmdbReducersMap = {
+  config: configReducer,
+  tvshows: tvShowsReducer,
+}
 
-export * from './effects/epics'
+export * from './effects'

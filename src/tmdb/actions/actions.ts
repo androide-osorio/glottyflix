@@ -9,5 +9,5 @@ export const fetchConfigFail = createAction(TMDBActionTypes.FETCH_CONFIG_FAIL)
 
 // actions for calling discover endpoint
 export const discover = createAction(TMDBActionTypes.DISCOVER)
-export const dicoverSuccess = createAction(TMDBActionTypes.DISCOVER_SUCCESS)
+export const discoverSuccess = createAction(TMDBActionTypes.DISCOVER_SUCCESS)
 export const discoverFail = createAction(TMDBActionTypes.DISCOVER_FAIL)

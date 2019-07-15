@@ -1,15 +1,16 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import { combineEpics, createEpicMiddleware } from 'redux-observable'
 
-import { configReducer, fetchConfigEpic, tvShowsReducer } from '../tmdb/store'
+import { tmdbReducersMap } from '../tmdb/store'
+import { discoverEpic, fetchConfigEpic } from '../tmdb/effects'
 
 export const rootEpic = combineEpics(
   fetchConfigEpic,
+  discoverEpic,
 )
 
 export const rootReducer = combineReducers({
-  config: configReducer,
-  tvshows: tvShowsReducer,
+  ...tmdbReducersMap
 })
 
 // enhancers configuration
