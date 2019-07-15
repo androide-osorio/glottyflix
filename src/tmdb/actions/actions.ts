@@ -1,5 +1,3 @@
-import { __ } from 'ramda'
-
 import { TMDBActionTypes } from './actionTypes';
 import { createAction } from '../../store/actions'
 
