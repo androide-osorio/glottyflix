@@ -15,7 +15,7 @@ export const discoverEpic: Epic = actions$ => actions$.pipe(
       with_original_language: payload.language
     }
   }))),
-  map((response: any) => response.data),
+  map((response: any) => response.data.results),
   map(data => discoverSuccess(data)),
   catchError(error => of(discoverFail(error))),
 )
