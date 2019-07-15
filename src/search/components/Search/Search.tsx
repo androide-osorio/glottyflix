@@ -1,6 +1,8 @@
 import React from 'react';
 import { Language } from '../../models/languages'
 
+import classes from './Search.module.css'
+
 type SearchPropTypes = {
   label: string,
   placeholder: string,
@@ -11,10 +13,11 @@ type SearchPropTypes = {
 
 const Search = ({ label, placeholder, languages, onChange, onSubmit } : SearchPropTypes) => {
   return (
-    <form>
+    <form className={classes.Search}>
       <label htmlFor="queryInput">
         { label }
         <input
+          className={classes.Search__input}
           type="search"
           name="language"
           list="languagesList"
@@ -27,8 +30,8 @@ const Search = ({ label, placeholder, languages, onChange, onSubmit } : SearchPr
           )}
         </datalist>
       </label>
-      <input type="submit" value="Search!" onClick={onSubmit} />
-      <input type="submit" value="Surprise me!" onClick={onSubmit} />
+      <input className={classes.Search__button} type="submit" value="Search!" onClick={onSubmit} />
+      <input className={classes.Search__button} type="submit" value="Surprise me!" onClick={onSubmit} />
     </form>
   );
 };

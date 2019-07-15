@@ -7,6 +7,8 @@ import { discover, selectTvShows } from '../tmdb/store';
 import Search from './components/Search/Search'
 import SearchResults from './components/SearchResults/SearchResults'
 
+import classes from './SearchPage.module.css'
+
 const langs = [
   { code: 'en', name: '🇺🇸 English' },
   { code: 'es', name: '🇪🇸 Spanish' },
@@ -30,15 +32,14 @@ function SearchPage() {
   const {inputs, handleInputChange, handleSubmit} = useSearchForm(callDiscover);
 
   return (
-    <div className="SearchPage">
-    <h1>The Polyglot Binge-Watcher</h1>
+    <div className={classes.SearchPage}>
+    <h1 className={classes.SearchPage__title}>The Polyglot<br />Binge-Watcher</h1>
     <Search
       label="I am looking for TV-Shows in "
       placeholder="Language I am learning..."
       languages={langs}
       onChange={handleInputChange}
       onSubmit={handleSubmit} />
-  
     <section>
       {tvShows.length > 0 && <h3>found {tvShows.length} TV Shows</h3>}
       <SearchResults items={tvShows} />

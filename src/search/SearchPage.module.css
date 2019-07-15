@@ -1,0 +1,13 @@
+.SearchPage {
+  height: 100vmin;
+  background-color: #081c24;
+  padding: 3rem;
+  color: white;
+}
+
+.SearchPage__title {
+  font-family: 'Raleway';
+  font-size: 6rem;
+  font-weight: 900;
+  color: gold;
+}
