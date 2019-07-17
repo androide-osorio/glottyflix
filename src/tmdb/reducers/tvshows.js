@@ -1,18 +1,17 @@
-import { Reducer } from 'redux';
-import { TMDBActionTypes } from '../actions/actionTypes';
+import actionTypes from '../actions/actionTypes';
 
 const initialState = {
   items: [],
   error: null
 }
 
-export const tvShowsReducer: Reducer = (state = initialState, action) => {
+export const tvShowsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case TMDBActionTypes.DISCOVER_SUCCESS: {
+    case actionTypes.DISCOVER_SUCCESS: {
       const { error, ...restState } = state
       return { ...restState, items: action.payload }
     }
-    case TMDBActionTypes.DISCOVER_FAIL: {
+    case actionTypes.DISCOVER_FAIL: {
       return { ...state, error: action.payload }
     }
     default:

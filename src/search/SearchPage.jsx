@@ -20,7 +20,7 @@ function SearchPage() {
   const dispatch = useDispatch()
   const tvShows = useSelector(selectTvShows)
 
-  const callDiscover = (inputs: any) => {
+  const callDiscover = inputs => {
     const { language } = inputs
     const langObject = langs.find(lang => lang.name === language)
 

@@ -1,16 +1,16 @@
 import { useState } from "react";
 
-export const useSearchForm = (callback: Function) => {
+export const useSearchForm = (callback) => {
   const [inputs, setInputs] = useState({})
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event) => {
     if (event) {
       event.preventDefault()
     }
     callback(inputs)
   }
 
-  const handleInputChange = (event: any) => {
+  const handleInputChange = (event) => {
     event.persist();
     setInputs(inputs => ({...inputs, [event.target.name]: event.target.value}))
   }

@@ -1,17 +1,8 @@
 import React from 'react';
-import { Language } from '../../models/languages'
 
 import classes from './Search.module.css'
 
-type SearchPropTypes = {
-  label: string,
-  placeholder: string,
-  languages: Language[],
-  onChange: any,
-  onSubmit: any,
-}
-
-const Search = ({ label, placeholder, languages, onChange, onSubmit } : SearchPropTypes) => {
+const Search = ({ label, placeholder, languages, onChange, onSubmit }) => {
   return (
     <form className={classes.Search}>
       <label htmlFor="queryInput">

@@ -4,6 +4,8 @@ import { combineEpics, createEpicMiddleware } from 'redux-observable'
 import { tmdbReducersMap } from '../tmdb/store'
 import { discoverEpic, fetchConfigEpic } from '../tmdb/effects'
 
+// -----------------------------------
+
 export const rootEpic = combineEpics(
   fetchConfigEpic,
   discoverEpic,
@@ -16,7 +18,7 @@ export const rootReducer = combineReducers({
 // enhancers configuration
 const epicMiddleware = createEpicMiddleware()
 const composeEnhancers = process.env.NODE_ENV === 'development'
-  ? (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+  ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
   : null
 
 // -----------------------------------

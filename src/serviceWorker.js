@@ -54,7 +54,7 @@ export function register(config: any) {
   }
 }
 
-function registerValidSW(swUrl: any, config: any) {
+function registerValidSW(swUrl, config) {
   navigator.serviceWorker
     .register(swUrl)
     .then(registration => {
@@ -98,7 +98,7 @@ function registerValidSW(swUrl: any, config: any) {
     });
 }
 
-function checkValidServiceWorker(swUrl: any, config: any) {
+function checkValidServiceWorker(swUrl, config) {
   // Check if the service worker can be found. If it can't reload the page.
   fetch(swUrl)
     .then(response => {

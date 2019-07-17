@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
+import axios from 'axios'
 import { curry } from 'ramda'
 
 // extract API Key from environment
@@ -15,9 +15,10 @@ export const api = axios.create({
   }
 })
 
-export const get = curry((instance: AxiosInstance, url: string, config: AxiosRequestConfig) => {
-  const defaultParams: { [n: string]: string } = api.defaults.params
-  return api.get(url, {
+// perform a GET Request
+export const get = curry((instance, url, config) => {
+  const defaultParams = api.defaults.params
+  return instance.get(url, {
     params: { ...defaultParams, ...config.params }
   })
 })

@@ -5,12 +5,12 @@ import { selectPosterPath } from '../../../tmdb/store';
 
 import classes from './SearchResults.module.css'
 
-const SearchResults = ({ items }: any) => {
-  const posterPath = useSelector(selectPosterPath('w185') as any)
+const SearchResults = ({ items }) => {
+  const posterPath = useSelector(selectPosterPath('w185'))
 
   return (
     <ul className={classes.SearchResults}>
-      {items.map((item: any) =>
+      {items.map((item) =>
         <li className={classes.SearchResults__item} key={item.id}>
           <ResultItem title={item.original_name} image={`${posterPath}${item.poster_path}`} />
         </li>
