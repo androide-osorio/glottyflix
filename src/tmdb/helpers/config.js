@@ -1,4 +1,4 @@
-import { curry, find, equals, prop, propOr } from 'ramda'
+import { curry, find, equals, propOr } from 'ramda'
 
 export const buildPathForImage = curry((size, type, images) => {
   if (!images) return '';
