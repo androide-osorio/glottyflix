@@ -1,16 +1,13 @@
-import { curry, memoize } from 'ramda'
-// import createSelector from 'reselect'
+import { compose, memoizeWith, prop, propOr, concat } from 'ramda'
+import { createSelector } from 'reselect';
 
-export const getConfig = state => state.config
+import { buildPathForImage } from '../helpers/config'
 
-export const selectPosterPath = curry((size, state) => {
-  const { images } = state.config
-  if (!images) {
-    return '';
-  }
-  const w = images.poster_sizes
-    ? images.poster_sizes.find(s => s === size)
-    : 'original'
+export const getConfig = prop('config')
+export const getImageMeta = compose(propOr({}, 'images'), getConfig)
 
-  return `${images.secure_base_url}${w}/`
-})
+
+export const selectPosterPath = size => createSelector(
+  getImageMeta,
+  memoizeWith(concat, buildPathForImage(size, 'poster')),
+)
