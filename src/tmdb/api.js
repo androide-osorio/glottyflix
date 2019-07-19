@@ -21,8 +21,4 @@ const TmdbApi = axios.create({
   }
 })
 
-export const getConfig = get(TmdbApi, `configuration`)
-export const discoverTvShows = get(TmdbApi, `discover/tv`)
-export const fetchTvDetails = showId => get(TmdbApi, `/tv/${showId}`)
-
 export default TmdbApi

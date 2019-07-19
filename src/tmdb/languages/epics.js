@@ -7,7 +7,7 @@ import { actionTypes, fetchLanguagesSuccess, fetchLanguagesFail } from '../actio
 
 export const fetchLanguagesEpic = actions$ => actions$.pipe(
   ofType(actionTypes.FETCH_LANGUAGES),
-  map(_ => fetchLanguages()),
+  switchMap(_ => fetchLanguages()),
   map(response => response.data),
   map(data => fetchLanguagesSuccess(data)),
   catchError(error => of(fetchLanguagesFail(error))),
