@@ -28,6 +28,9 @@ const TvShowDetails = ({ match }) => {
       <h3>Showing details for TV show with ID {match.params.id}</h3>
       <TvShowHeader
         title={tvShow.name}
+        language={tvShow.original_language}
+        seasonsCount={tvShow.number_of_seasons}
+        episodesCount={tvShow.number_of_episodes}
         poster={`${posterPath}/${tvShow.poster_path}`}
         backdrop={`${backdropPath}/${tvShow.backdrop_path}`}
         rating={Math.round(map(tvShow.popularity, 0, 100, 0, 5))} />
