@@ -21,3 +21,9 @@ export const selectLogoPath = size => createSelector(
   getImageMeta,
   buildPathForImage(size, 'logo'),
 )
+
+
+export const selectProfilePath = size => createSelector(
+  getImageMeta,
+  buildPathForImage(size, 'profile'),
+)

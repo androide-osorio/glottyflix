@@ -11,7 +11,11 @@ export const fetchTvShowDetailsEpic = actions$ => actions$.pipe(
   map(action => action.payload),
   map(payload => payload.id),
   map(tvId => fetchTvDetails(tvId)),
-  switchMap(callTvDetails => callTvDetails({})),
+  switchMap(callTvDetails => callTvDetails({
+    params: {
+      append_to_response: 'videos,credits,external_ids'
+    }
+  })),
   map(response => response.data),
   map(data => fetchTvShowDetailsSuccess(data)),
   catchError(error => of(fetchTvShowDetailsFail(error))),

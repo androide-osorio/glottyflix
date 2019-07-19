@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { DateTime } from 'luxon'
 
-import { fetchTvShowDetails, selectTvShowWithId, selectPosterPath, selectBackdropPath, selectLogoPath } from '../tmdb/store';
+import { fetchTvShowDetails, selectTvShowWithId, selectPosterPath, selectBackdropPath, selectLogoPath, selectProfilePath } from '../tmdb/store';
 
 import TvShowHeader from './components/TvShowHeader/TvShowHeader'
 import TvShowSection from './components/TvShowSection/TvShowSection';
@@ -15,6 +15,7 @@ const TvShowDetails = ({ match }) => {
   const posterPath = useSelector(selectPosterPath('w185'))
   const backdropPath = useSelector(selectBackdropPath('original'))
   const logoPath = useSelector(selectLogoPath('w92'))
+  const profilePath = useSelector(selectProfilePath('w185'))
 
 
   useEffect(() => {
@@ -51,6 +52,15 @@ const TvShowDetails = ({ match }) => {
         <TvShowSection title={"Genres"}>
           {tvShow.genres.map(genre => (
             <span key={genre.id}>{genre.name}</span>
+          )) }
+        </TvShowSection>
+        <TvShowSection title={"Cast"}>
+          {tvShow.credits.cast.map(actor => (
+            <div key={actor.id}>
+              <img src={`${profilePath}/${actor.profile_path}`} alt={actor.name}/>
+              <h5>{actor.name}</h5>
+              <p>{actor.character}</p>
+            </div>
           )) }
         </TvShowSection>
       </section>
