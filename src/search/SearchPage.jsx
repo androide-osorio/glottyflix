@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
 
-import { useSearchForm } from './hooks/useForm'
+import { useSearchForm } from '../common/hooks/useForm'
 import { discover } from '../tmdb/store';
 
 import Search from './components/Search/Search'
