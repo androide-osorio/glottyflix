@@ -6,6 +6,7 @@ import { fetchTvShowDetails, selectTvShowWithId, selectPosterPath, selectBackdro
 
 import TvShowHeader from './components/TvShowHeader/TvShowHeader'
 import TvShowSection from './components/TvShowSection/TvShowSection';
+import GenreTag from './components/GenreTag/GenreTag';
 
 const map = (value, x1, y1, x2, y2) => (value - x1) * (y2 - x2) / (y1 - x1) + x2;
 
@@ -59,7 +60,7 @@ const TvShowDetails = ({ match }) => {
         </TvShowSection>
         <TvShowSection title={"Genres"}>
           {tvShow.genres.map(genre => (
-            <span key={genre.id}>{genre.name}</span>
+            <GenreTag key={genre.id}>{genre.name}</GenreTag>
           )) }
         </TvShowSection>
         <TvShowSection title={"Cast"}>
