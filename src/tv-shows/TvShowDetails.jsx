@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { DateTime } from 'luxon'
 
 import { fetchTvShowDetails, selectTvShowWithId, selectPosterPath, selectBackdropPath } from '../tmdb/store';
 
 import TvShowHeader from './components/TvShowHeader/TvShowHeader'
+import TvShowSection from './components/TvShowSection/TvShowSection';
 
 const map = (value, x1, y1, x2, y2) => (value - x1) * (y2 - x2) / (y1 - x1) + x2;
 
@@ -25,7 +27,6 @@ const TvShowDetails = ({ match }) => {
 
   return (
     <div>
-      <h3>Showing details for TV show with ID {match.params.id}</h3>
       <TvShowHeader
         title={tvShow.name}
         language={tvShow.original_language}
@@ -33,8 +34,14 @@ const TvShowDetails = ({ match }) => {
         episodesCount={tvShow.number_of_episodes}
         poster={`${posterPath}/${tvShow.poster_path}`}
         backdrop={`${backdropPath}/${tvShow.backdrop_path}`}
-        rating={Math.round(map(tvShow.popularity, 0, 100, 0, 5))} />
-      {JSON.stringify(tvShow)}
+        rating={Math.round(map(tvShow.vote_average, 0, 10, 0, 5))} />
+
+      <section>
+        <TvShowSection title={"Synopsis"}>
+          <h4>{DateTime.fromISO(tvShow.first_air_date).year} - {tvShow.in_production ? 'Present' : DateTime.fromISO(tvShow.last_air_date).year}</h4>
+          <p>{tvShow.overview}</p>
+        </TvShowSection>
+      </section>
     </div>
   );
 };
