@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { DateTime } from 'luxon'
 
-import { fetchTvShowDetails, selectTvShowWithId, selectPosterPath, selectBackdropPath } from '../tmdb/store';
+import { fetchTvShowDetails, selectTvShowWithId, selectPosterPath, selectBackdropPath, selectLogoPath } from '../tmdb/store';
 
 import TvShowHeader from './components/TvShowHeader/TvShowHeader'
 import TvShowSection from './components/TvShowSection/TvShowSection';
@@ -14,6 +14,8 @@ const TvShowDetails = ({ match }) => {
   const tvShow = useSelector(selectTvShowWithId(match.params.id))
   const posterPath = useSelector(selectPosterPath('w185'))
   const backdropPath = useSelector(selectBackdropPath('original'))
+  const logoPath = useSelector(selectLogoPath('w92'))
+
 
   useEffect(() => {
     dispatch(fetchTvShowDetails({ id: match.params.id }))
@@ -37,6 +39,11 @@ const TvShowDetails = ({ match }) => {
         rating={Math.round(map(tvShow.vote_average, 0, 10, 0, 5))} />
 
       <section>
+        <TvShowSection title={"Available in"}>
+          {tvShow.networks.map(network => (
+            <img key={network.id} src={`${logoPath}/${network.logo_path}`} alt={network.name} />
+          )) }
+        </TvShowSection>
         <TvShowSection title={"Synopsis"}>
           <h4>{DateTime.fromISO(tvShow.first_air_date).year} - {tvShow.in_production ? 'Present' : DateTime.fromISO(tvShow.last_air_date).year}</h4>
           <p>{tvShow.overview}</p>

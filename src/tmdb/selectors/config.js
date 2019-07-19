@@ -16,3 +16,8 @@ export const selectBackdropPath = size => createSelector(
   getImageMeta,
   buildPathForImage(size, 'backdrop'),
 )
+
+export const selectLogoPath = size => createSelector(
+  getImageMeta,
+  buildPathForImage(size, 'logo'),
+)
