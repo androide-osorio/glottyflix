@@ -1,8 +1,8 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import { useSearchForm } from './hooks/useForm'
-import { discover, selectTvShows } from '../tmdb/store';
+import { discover } from '../tmdb/store';
 
 import Search from './components/Search/Search'
 import SearchResults from './components/SearchResults/SearchResults'
@@ -18,7 +18,6 @@ const langs = [
 
 function SearchPage() {
   const dispatch = useDispatch()
-  const tvShows = useSelector(selectTvShows)
 
   const callDiscover = inputs => {
     const { language } = inputs
@@ -41,8 +40,7 @@ function SearchPage() {
       onChange={handleInputChange}
       onSubmit={handleSubmit} />
     <section>
-      {tvShows.length > 0 && <h3>found {tvShows.length} TV Shows</h3>}
-      <SearchResults items={tvShows} />
+      <SearchResults />
     </section>
   </div>
   );
