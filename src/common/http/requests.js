@@ -1,5 +1,6 @@
 import { curry, useWith, propOr, mergeDeepLeft } from 'ramda'
 
+// extract params from Axios request config
 const getRequestParams = propOr({}, 'params')
 
 // UrlSearchParams -> UrlSearchParams -> UrlSearchParams
@@ -9,9 +10,9 @@ export const mergeWithDefaultParams = useWith(
 )
 
 /*
-For this app, the most important part of the requests
-are the query parameters. Therefore, I only took care
-of correctly merging those
+For this app, the most important API requests are GET requests and
+its query parameters. Therefore, I only took care
+of correctly merging query parameters
 */
 // perform a GET Request
 export const get = curry((instance, url, config) => {
