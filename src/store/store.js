@@ -2,13 +2,14 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import { combineEpics, createEpicMiddleware } from 'redux-observable'
 
 import { tmdbReducersMap } from '../tmdb/store'
-import { discoverEpic, fetchConfigEpic } from '../tmdb/effects'
+import { discoverEpic, fetchConfigEpic, fetchTvShowDetailsEpic } from '../tmdb/effects'
 
 // -----------------------------------
 
 export const rootEpic = combineEpics(
   fetchConfigEpic,
   discoverEpic,
+  fetchTvShowDetailsEpic,
 )
 
 export const rootReducer = combineReducers({

@@ -9,7 +9,7 @@ const  {
 
 export const api = axios.create({
   baseURL: REACT_APP_TMDB_API_URL,
-  timeout: 1000,
+  timeout: 5000,
   params: {
     api_key: REACT_APP_TMDB_API_KEY,
   }
