@@ -24,7 +24,7 @@ function SearchPage() {
     const langObject = langs.find(lang => lang.name === language)
 
     if (langObject) {
-      dispatch(discover({ language: langObject.code }))
+      dispatch(discover({ type: 'tv', filters: { language: langObject.code } }))
     }
   }
 
