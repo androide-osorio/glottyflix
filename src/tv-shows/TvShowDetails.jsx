@@ -48,6 +48,11 @@ const TvShowDetails = ({ match }) => {
           <h4>{DateTime.fromISO(tvShow.first_air_date).year} - {tvShow.in_production ? 'Present' : DateTime.fromISO(tvShow.last_air_date).year}</h4>
           <p>{tvShow.overview}</p>
         </TvShowSection>
+        <TvShowSection title={"Genres"}>
+          {tvShow.genres.map(genre => (
+            <span key={genre.id}>{genre.name}</span>
+          )) }
+        </TvShowSection>
       </section>
     </div>
   );
