@@ -1,4 +1,4 @@
-import { compose, memoizeWith, prop, propOr, concat } from 'ramda'
+import { compose, prop, propOr, memoizeWith, identity } from 'ramda'
 import { createSelector } from 'reselect';
 
 import { buildPathForImage } from '../helpers/config'
@@ -9,5 +9,10 @@ export const getImageMeta = compose(propOr({}, 'images'), getConfig)
 
 export const selectPosterPath = size => createSelector(
   getImageMeta,
-  memoizeWith(concat, buildPathForImage(size, 'poster')),
+  buildPathForImage(size, 'poster'),
+)
+
+export const selectBackdropPath = size => createSelector(
+  getImageMeta,
+  buildPathForImage(size, 'backdrop'),
 )
