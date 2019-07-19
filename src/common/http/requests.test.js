@@ -26,16 +26,30 @@ describe('Http GET', () => {
       .toHaveBeenNthCalledWith(1, url, expectedConfig)
   })
 
-  it('can send GET request with additional parameters', () => {
+  it('can override default request config', () => {
     config = {
       headers: {'X-Custom-Header': 'blabla'},
-      params: { foo: 'baz', num: 4 },
     }
 
     // eslint-disable-next-line no-unused-vars
     const request = get(mockAxios, url, config)
     const expectedConfig = {
       ...config,
+      params: defaultParams,
+    }
+
+    expect(mockAxios.get)
+      .toHaveBeenNthCalledWith(1, url, expectedConfig)
+  })
+
+  it('can merge Query Parameters', () => {
+    config = {
+      params: { foo: 'baz', num: 4 },
+    }
+
+    // eslint-disable-next-line no-unused-vars
+    const request = get(mockAxios, url, config)
+    const expectedConfig = {
       params: {...defaultParams, ...config.params },
     }
 
