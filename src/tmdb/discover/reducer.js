@@ -1,5 +1,5 @@
 import { prop } from 'ramda'
-import actionTypes from '../actions/actionTypes'
+import { actionTypes } from './actions'
 
 const initialState = {
   query: '',

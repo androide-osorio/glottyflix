@@ -1,10 +1,9 @@
 import { equals, update } from 'ramda'
-import actionTypes from '../actions/actionTypes'
+import { actionTypes } from './actions'
 
 const initialState = {
-  items: [],
-  details: [],
-  error: null
+  byId: {},
+  index: [],
 }
 
 // case reducers

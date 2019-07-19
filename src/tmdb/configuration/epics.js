@@ -2,12 +2,12 @@ import { from, of } from 'rxjs';
 import { ofType } from 'redux-observable';
 import { map, switchMap, catchError } from 'rxjs/operators'
 
-import { getConfig } from '../http'
+import { getConfig } from './http'
 import {
   actionTypes,
   fetchConfigSuccess,
   fetchConfigFail
-} from '../actions'
+} from './actions'
 
 /**
  * this epic captures FETCH_CONFIG actions,

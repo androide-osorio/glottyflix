@@ -1,5 +1,5 @@
-import { prop, equals, update } from 'ramda'
-import actionTypes from '../actions/actionTypes'
+import { prop } from 'ramda'
+import { actionTypes } from './actions'
 
 const initialState = {
   byId: {},
@@ -28,7 +28,7 @@ function saveError(state, action) {
 }
 
 // root reducer
-export const tvShowsReducer = (state = initialState, action) => {
+export function languagesReducer(state = initialState, action) {
   switch (action.type) {
     case actionTypes.FETCH_LANGUAGES_SUCCESS: {
       return saveEntities(state, action)

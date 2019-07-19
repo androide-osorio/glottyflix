@@ -1,6 +1,6 @@
 import createAction from '../../common/store/createAction'
 
-const actionTypes = {
+export const actionTypes = {
   DISCOVER: 'tmdb/discover',
   DISCOVER_SUCCESS: 'tmdb/discover/success',
   DISCOVER_FAIL: 'tmdb/discover/fail',

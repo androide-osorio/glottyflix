@@ -1,5 +1,3 @@
-import { get } from './http'
-
 import axios from 'axios'
 
 // extract API Key from environment

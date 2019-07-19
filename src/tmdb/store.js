@@ -3,17 +3,17 @@ import { combineEpics } from 'redux-observable'
 
 // reducers
 import { configReducer } from './configuration/reducer'
-import { tvShowsReducer } from './tvshows/reducer'
+import { tvShowsReducer } from './tv-shows/reducer'
 import { discoverReducer } from './discover/reducer'
 import { languagesReducer } from './languages/reducer'
 
 import * as configSelectors from './configuration/selectors'
-import * as tvShowsSelectors from './tvshows/selectors'
+import * as tvShowsSelectors from './tv-shows/selectors'
 import * as discoverSelectors from './discover/selectors'
 import * as languagesSelectors from './languages/selectors'
 
 import { fetchConfigEpic } from './configuration/epics'
-import { fetchTvShowDetailsEpic } from './tvshows/epics'
+import { fetchTvShowDetailsEpic } from './tv-shows/epics'
 import { discoverEpic } from './discover/epics'
 import { fetchLanguagesEpic } from './languages/epics'
 
@@ -52,11 +52,11 @@ export const tmdbEpic = combineEpics(
 
 // exports
 export * from './configuration/actions'
-export * from './tvshows/actions'
+export * from './tv-shows/actions'
 export * from './discover/actions'
 export * from './languages/actions'
 
 export * from './configuration/selectors'
-export * from './tvshows/selectors'
+export * from './tv-shows/selectors'
 export * from './discover/selectors'
 export * from './languages/selectors'

@@ -1,13 +1,12 @@
-import actionTypes from '../actions/actionTypes'
+import { actionTypes } from './actions'
 
-import {saveConfig, saveError} from './case-reducers'
+import { saveConfig, saveError } from './case-reducers'
 
 const initialState = {
   images: {
     baseUrl: '',
     sizes: {},
-  },
-  change_keys: []
+  }
 }
 
 export const configReducer = (state = initialState, action) => {

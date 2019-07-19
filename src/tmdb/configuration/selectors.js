@@ -4,28 +4,28 @@ import { createSelector } from 'reselect';
 import { buildPathForImage } from './helpers'
 
 // base selectors
-export const getConfig = prop('config')
-export const getConfigError = propOr(null, path('config', 'error'))
-export const getImageMeta = compose(propOr({}, 'images'), getConfig)
+export const selectConfig = prop('config')
+export const selectConfigError = propOr(null, path('config', 'error'))
+export const selectImageMeta = compose(propOr({}, 'images'), selectConfig)
 
 // -----------------------------------------------------------
 // feature selectors
 export const selectPosterPath = size => createSelector(
-  getImageMeta,
+  selectImageMeta,
   buildPathForImage(size, 'poster'),
 )
 
 export const selectBackdropPath = size => createSelector(
-  getImageMeta,
+  selectImageMeta,
   buildPathForImage(size, 'backdrop'),
 )
 
 export const selectLogoPath = size => createSelector(
-  getImageMeta,
+  selectImageMeta,
   buildPathForImage(size, 'logo'),
 )
 
 export const selectProfilePath = size => createSelector(
-  getImageMeta,
+  selectImageMeta,
   buildPathForImage(size, 'profile'),
 )

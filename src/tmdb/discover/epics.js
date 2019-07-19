@@ -3,8 +3,8 @@ import { from as observableFrom, of } from 'rxjs';
 import { ofType } from 'redux-observable';
 import { map, switchMap, catchError } from 'rxjs/operators'
 
-import { discoverTvShows } from '../http';
-import { actionTypes , discoverSuccess, discoverFail } from '../actions/actions';
+import { discoverTvShows } from './http';
+import { actionTypes, discoverSuccess, discoverFail } from './actions';
 
 const callDiscoverEndpoint = compose(
   observableFrom,

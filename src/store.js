@@ -2,7 +2,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import { combineEpics, createEpicMiddleware } from 'redux-observable'
 
 // stores for app modules
-import { tmdbReducersMap, tmdbEpic } from '../tmdb/store'
+import { tmdbReducersMap, tmdbEpic } from './tmdb/store'
 
 // -----------------------------------
 

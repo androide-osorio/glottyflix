@@ -3,7 +3,7 @@ import { ofType } from 'redux-observable';
 import { map, switchMap, catchError } from 'rxjs/operators'
 
 import { fetchTvDetails } from './http';
-import { actionTypes, fetchTvShowDetailsSuccess, fetchTvShowDetailsFail } from '../actions';
+import { actionTypes, fetchTvShowDetailsSuccess, fetchTvShowDetailsFail } from './actions';
 
 export const fetchTvShowDetailsEpic = actions$ => actions$.pipe(
   ofType(actionTypes.FETCH_TV_DETAILS),
