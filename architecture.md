@@ -23,6 +23,7 @@
 [entityName]:
   byID: Map<string, Entity>
   index: any[] # list of ids
+  error:? any # in case there is an error fetching an entity
 ```
 
 ### Discover
@@ -41,9 +42,14 @@
 ```yml
 configuration:
   images:
-    base_url: string
-    poster_sizes: string[]  # repeats for every image type
-  change_keys: string[]  # not important right now
+    baseUrl: string  # default to secure_base_url
+    sizes:
+      poster: string[]
+      logo: string[]
+      backdrop: string[]
+      profile: string[]
+      still: string[]
+  error?: any # if any error happens when fetching configuration
 ```
 
 ----------------------------------;
