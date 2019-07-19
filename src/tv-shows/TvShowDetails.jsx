@@ -37,6 +37,7 @@ const TvShowDetails = ({ match }) => {
 
   return (
     <div>
+      <button onClick={() => window.history.back()}>back to results</button>
       <TvShowHeader
         title={tvShow.name}
         language={tvShow.original_language}
