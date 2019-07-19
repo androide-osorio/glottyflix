@@ -1,4 +1,3 @@
-import { prop } from 'ramda'
 import { actionTypes } from './actions'
 
 const initialState = {
@@ -16,12 +15,11 @@ function saveDiscoverQuery(state, action) {
 function saveDiscoverResults(state, action) {
   const { error, results: oldResults, ...restState } = state
   const { type, results: newResults } = action.payload
-  const idList = newResults.map(prop('id'))
   const updatedResults = {
     ...oldResults,
-    [type]: idList
+    [type]: newResults
   }
-  return { ...restState, ...updatedResults }
+  return { ...restState, results: { updatedResults } }
 }
 
 function saveError(state, action) {
