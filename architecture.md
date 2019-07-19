@@ -21,7 +21,7 @@
 
 ```yml
 [entityName]:
-  byID: Map<string, Entity>
+  byId: Map<string, Entity>
   index: any[] # list of ids
   error:? any # in case there is an error fetching an entity
 ```
@@ -29,12 +29,12 @@
 ### Discover
 
 ```yml
-  discover:
-    query: tv | movies | all
-    filters: any  # list of filters sent in the request (for now, only the language)
-    results:
-      tv?: any[]  # list of ids
-      movies?: any[] # list of ids
+discover:
+  query: tv | movies | all
+  filters: any  # list of filters sent in the request (for now, only the language)
+  results:
+    tv?: any[]  # list of ids
+    movies?: any[] # list of ids
 ```
 
 ### Configuration
