@@ -32,7 +32,7 @@ function saveError(state, action) {
 }
 
 //root reducer
-export function tvShowsReducer(state = initialState, action) {
+export function discoverReducer(state = initialState, action) {
   switch (action.type) {
     case actionTypes.DISCOVER: {
       return saveDiscoverQuery(state, action)

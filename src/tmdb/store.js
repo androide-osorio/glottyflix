@@ -49,3 +49,14 @@ export const tmdbEpic = combineEpics(
   fetchTvShowDetailsEpic,
   fetchLanguagesEpic,
 )
+
+// exports
+export * from './configuration/actions'
+export * from './tvshows/actions'
+export * from './discover/actions'
+export * from './languages/actions'
+
+export * from './configuration/selectors'
+export * from './tvshows/selectors'
+export * from './discover/selectors'
+export * from './languages/selectors'
