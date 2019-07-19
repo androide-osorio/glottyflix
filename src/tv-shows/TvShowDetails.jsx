@@ -9,6 +9,13 @@ import TvShowSection from './components/TvShowSection/TvShowSection';
 
 const map = (value, x1, y1, x2, y2) => (value - x1) * (y2 - x2) / (y1 - x1) + x2;
 
+const urls = {
+  imdb: 'https://www.imdb.com/title/',
+  facebook: 'https://www.facebook.com/',
+  instagram: 'https://www.instagram.com/',
+  twitter: 'https://www.twitter.com/',
+}
+
 const TvShowDetails = ({ match }) => {
   const dispatch = useDispatch()
   const tvShow = useSelector(selectTvShowWithId(match.params.id))
@@ -62,6 +69,15 @@ const TvShowDetails = ({ match }) => {
               <p>{actor.character}</p>
             </div>
           )) }
+        </TvShowSection>
+        <TvShowSection title={"Social Media"}>
+
+          {Object.entries(tvShow.external_ids).filter(([, idValue]) => idValue).map(([idKey, idValue]) => {
+            const mediaName = idKey.replace('_id', '')
+            const mediaBaseUrl = urls[mediaName]
+
+            return <button href={`${mediaBaseUrl}/${idValue}`}>{mediaName}</button>
+          }) }
         </TvShowSection>
       </section>
     </div>
