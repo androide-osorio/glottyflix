@@ -3,13 +3,17 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import ResultItem from '../ResultItem/ResultItem'
-import { selectTvShows, selectPosterPath } from '../../../tmdb/store'
+import { selectDiscoverResults, selectPosterPath } from '../../../tmdb/store'
 
 import classes from './SearchResults.module.css'
 
 const SearchResults = () => {
-  const tvShows = useSelector(selectTvShows)
+  const tvShows = useSelector(selectDiscoverResults('tv'))
   const posterPath = useSelector(selectPosterPath('w185'))
+
+  if (!tvShows) {
+    return <p>Please wait...</p>
+  }
 
   return (
     <>

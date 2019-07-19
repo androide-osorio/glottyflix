@@ -8,9 +8,7 @@ export const selectSearchQuery = createSelector(
   pick(['query', 'filters'])
 )
 
-export const selectSearchResultsIndex = createSelector(
+export const selectDiscoverResults = type => createSelector(
   [selectDiscover],
-  discover => memoizeWith(
-    identity, type => prop(path(['results', type]), discover)
-  )
+  discover => prop(path(['results', type]), discover)
 )

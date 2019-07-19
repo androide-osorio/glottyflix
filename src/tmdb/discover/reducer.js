@@ -19,7 +19,7 @@ function saveDiscoverResults(state, action) {
     ...oldResults,
     [type]: newResults
   }
-  return { ...restState, results: { updatedResults } }
+  return { ...restState, results: updatedResults }
 }
 
 function saveError(state, action) {
