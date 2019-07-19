@@ -7,6 +7,8 @@ import { fetchTvShowDetails, selectTvShowWithId, selectPosterPath, selectBackdro
 import TvShowHeader from './components/TvShowHeader/TvShowHeader'
 import TvShowSection from './components/TvShowSection/TvShowSection';
 import GenreTag from './components/GenreTag/GenreTag';
+import ActorItem from './components/ActorItem/ActorItem';
+import Button from '../common/components/Button/Button';
 
 const map = (value, x1, y1, x2, y2) => (value - x1) * (y2 - x2) / (y1 - x1) + x2;
 
@@ -33,8 +35,6 @@ const TvShowDetails = ({ match }) => {
   if (!tvShow) {
     return <p>Please wait...</p>
   }
-
-  console.log(tvShow, posterPath, backdropPath)
 
   return (
     <div>
@@ -65,20 +65,15 @@ const TvShowDetails = ({ match }) => {
         </TvShowSection>
         <TvShowSection title={"Cast"}>
           {tvShow.credits.cast.map(actor => (
-            <div key={actor.id}>
-              <img src={`${profilePath}/${actor.profile_path}`} alt={actor.name}/>
-              <h5>{actor.name}</h5>
-              <p>{actor.character}</p>
-            </div>
+            <ActorItem profilePicture={`${profilePath}/${actor.profile_path}`} {...actor} />
           )) }
         </TvShowSection>
         <TvShowSection title={"Social Media"}>
-
           {Object.entries(tvShow.external_ids).filter(([, idValue]) => idValue).map(([idKey, idValue]) => {
             const mediaName = idKey.replace('_id', '')
             const mediaBaseUrl = urls[mediaName]
 
-            return <button href={`${mediaBaseUrl}/${idValue}`}>{mediaName}</button>
+            return <Button click={() => window.open(`${mediaBaseUrl}${idValue}`, '_blank')}>{mediaName}</Button>
           }) }
         </TvShowSection>
       </section>
