@@ -1,5 +1,4 @@
-import { compose, prop, head, includes, replace } from 'ramda'
-import adjust from 'ramda/es/adjust';
+import { compose, prop, head, includes, adjust, replace } from 'ramda'
 
 const isSizeList = compose( includes('_sizes'), head)
 const normalizeListName = adjust(0, replace('_sizes', ''))
