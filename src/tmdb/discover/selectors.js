@@ -9,6 +9,6 @@ export const selectSearchQuery = createSelector(
 )
 
 export const selectDiscoverResults = type => createSelector(
-  [selectDiscover],
-  discover => prop(path(['results', type]), discover)
+  selectDiscover,
+  discover => path(['results', type], discover)
 )

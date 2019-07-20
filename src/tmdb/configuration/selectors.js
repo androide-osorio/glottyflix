@@ -1,11 +1,11 @@
-import { compose, prop, propOr, path } from 'ramda'
+import { compose, prop, propOr, pathOr } from 'ramda'
 import { createSelector } from 'reselect';
 
 import { buildPathForImage } from './helpers'
 
 // base selectors
 export const selectConfig = prop('config')
-export const selectConfigError = propOr(null, path('config', 'error'))
+export const selectConfigError = pathOr(null, ['config', 'error'])
 export const selectImageMeta = compose(propOr({}, 'images'), selectConfig)
 
 // -----------------------------------------------------------

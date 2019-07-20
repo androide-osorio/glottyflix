@@ -7,20 +7,19 @@ import { selectDiscoverResults, selectPosterPath } from '../../../tmdb/store'
 
 import classes from './SearchResults.module.css'
 
-const SearchResults = () => {
-  const tvShows = useSelector(selectDiscoverResults('tv'))
+const SearchResults = ({ results }) => {
   const posterPath = useSelector(selectPosterPath('w185'))
 
-  if (!tvShows) {
+  if (!results) {
     return <p>Please wait...</p>
   }
 
   return (
     <>
-      {tvShows.length > 0 && <h3>found {tvShows.length} TV Shows</h3>}
+      {results.length > 0 && <h3>found {results.length} TV Shows</h3>}
 
       <ul className={classes.SearchResults}>
-        {tvShows.map((item) =>
+        {results.map((item) =>
           <li className={classes.SearchResults__item} key={item.id}>
             <Link to={`/tv-shows/${item.id}`}>
               <ResultItem
