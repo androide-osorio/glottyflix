@@ -31,17 +31,15 @@ function SearchPage() {
 
   return (
     <div className={classes.SearchPage}>
-    <h1 className={classes.SearchPage__title}>The Polyglot<br />Binge-Watcher</h1>
-    <Search
-      label="I am looking for TV-Shows in "
-      placeholder="Language I am learning..."
-      languages={languages}
-      onChange={handleInputChange}
-      onSubmit={handleSubmit} />
-    <section>
-      <SearchResults results={tvShows} itemPosterSize="w185" />
-    </section>
-  </div>
+      <h1 className={classes.SearchPage__title}>The Polyglot<br />Binge-Watcher</h1>
+      <Search
+        languages={languages}
+        onChange={handleInputChange}
+        onSubmit={handleSubmit} />
+      <section>
+        <SearchResults results={tvShows} itemPosterSize="w185" />
+      </section>
+    </div>
   );
 }
 

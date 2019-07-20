@@ -5,6 +5,33 @@
   text-align: center;
 }
 
+.Search__title {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.Search__dropdown {
+  position: relative;
+  border-radius: 0;
+  border: 0;
+  background-color: transparent;
+  font-size: 2rem;
+  padding: 0.5rem 0.5rem 0.3rem;
+  color: white;
+  display: block;
+}
+
+.Search__dropdown::before {
+  content: " ";
+  display: block;
+  height: 3px;
+  background-color: var(--accentColor);
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
 .Search__input {
   border: 0;
   border-bottom: 2px solid white;
@@ -18,8 +45,9 @@
   text-align: center;
 }
 
-.Search__input:focus {
-  color: gold;
+.Search__input:focus,
+.Search__dropdown:focus {
+  color: white;
   border-bottom-color: gold;
 }
 

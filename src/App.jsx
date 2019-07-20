@@ -4,10 +4,12 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 import { fetchConfig, fetchLanguages } from './tmdb/store';
 
-// stylesheets and assets
-import './App.css';
+// external components
 import SearchPage from './search/SearchPage';
 import { ResultDetails } from './details';
+
+// stylesheets and assets
+import styles from './App.module.css';
 
 function App() {
   const dispatch = useDispatch()
@@ -19,7 +21,7 @@ function App() {
 
   return (
     <Router>
-      <div className="App">
+      <div className={styles.App}>
         <Switch>
           <Route path="/" exact component={SearchPage} />
           <Route path="/tv-shows/:id" component={ResultDetails} />
