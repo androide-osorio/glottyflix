@@ -10,7 +10,7 @@ const initialState = {
 function saveEntity(state, action) {
   const newShow = action.payload
   const tvShowId = newShow.id
-  const { byId: oldEntities, index: oldIndex } = state.byId
+  const { byId: oldEntities, index: oldIndex } = state
   const showIdIndex = oldIndex.findIndex(equals(tvShowId))
   const updatedIndex = showIdIndex !== -1
     ? update(showIdIndex, tvShowId, oldIndex)

@@ -1,14 +1,15 @@
 import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { DateTime } from 'luxon'
 
-import { fetchTvShowDetails, selectTvShowWithId, selectPosterPath, selectBackdropPath, selectLogoPath, selectProfilePath } from '../tmdb/store';
+import { useMemoizedSelector } from '../common/hooks'
+import { fetchTvShowDetails, selectTvShowWithId, selectPosterPath, selectBackdropPath, selectLogoPath, selectProfilePath } from '../tmdb/store'
 
 import DetailsHeader from './components/DetailsHeader/DetailsHeader'
-import DetailsSection from './components/DetailsSection/DetailsSection';
-import GenreTag from './components/GenreTag/GenreTag';
-import ActorItem from './components/ActorItem/ActorItem';
-import Button from '../common/components/Button/Button';
+import DetailsSection from './components/DetailsSection/DetailsSection'
+import GenreTag from './components/GenreTag/GenreTag'
+import ActorItem from './components/ActorItem/ActorItem'
+import Button from '../common/components/Button/Button'
 
 const map = (value, x1, y1, x2, y2) => (value - x1) * (y2 - x2) / (y1 - x1) + x2;
 
@@ -21,16 +22,16 @@ const urls = {
 
 const ResultDetails = ({ match }) => {
   const dispatch = useDispatch()
-  const tvShow = useSelector(selectTvShowWithId(match.params.id))
-  const posterPath = useSelector(selectPosterPath('w185'))
-  const backdropPath = useSelector(selectBackdropPath('original'))
-  const logoPath = useSelector(selectLogoPath('w92'))
-  const profilePath = useSelector(selectProfilePath('w185'))
-
 
   useEffect(() => {
     dispatch(fetchTvShowDetails({ id: match.params.id }))
-  })
+  }, [dispatch, match.params.id])
+
+  const tvShow = useMemoizedSelector(selectTvShowWithId, match.params.id)
+  const posterPath = useMemoizedSelector(selectPosterPath, 'w185')
+  const backdropPath = useMemoizedSelector(selectBackdropPath, 'original')
+  const logoPath = useMemoizedSelector(selectLogoPath, 'w92')
+  const profilePath = useMemoizedSelector(selectProfilePath, 'w185')
 
   if (!tvShow) {
     return <p>Please wait...</p>
@@ -65,7 +66,7 @@ const ResultDetails = ({ match }) => {
         </DetailsSection>
         <DetailsSection title={"Cast"}>
           {tvShow.credits.cast.map(actor => (
-            <ActorItem profilePicture={`${profilePath}/${actor.profile_path}`} {...actor} />
+            <ActorItem key={actor.id} profilePicture={`${profilePath}/${actor.profile_path}`} {...actor} />
           )) }
         </DetailsSection>
         <DetailsSection title={"Social Media"}>
@@ -73,7 +74,7 @@ const ResultDetails = ({ match }) => {
             const mediaName = idKey.replace('_id', '')
             const mediaBaseUrl = urls[mediaName]
 
-            return <Button click={() => window.open(`${mediaBaseUrl}${idValue}`, '_blank')}>{mediaName}</Button>
+            return <Button key={idValue} click={() => window.open(`${mediaBaseUrl}${idValue}`, '_blank')}>{mediaName}</Button>
           }) }
         </DetailsSection>
       </section>
