@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const useSearchForm = (callback) => {
+export const useForm = (callback) => {
   const [inputs, setInputs] = useState({})
 
   const handleSubmit = (event) => {

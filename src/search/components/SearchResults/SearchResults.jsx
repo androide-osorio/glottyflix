@@ -1,15 +1,15 @@
-import React, { useMemo } from 'react'
-import { useSelector } from 'react-redux'
+import React from 'react'
 import { Link } from 'react-router-dom'
 
-import ResultItem from '../ResultItem/ResultItem'
+import { useMemoizedSelector } from '../../../common/hooks'
 import { selectPosterPath } from '../../../tmdb/store'
+
+import ResultItem from '../ResultItem/ResultItem'
 
 import classes from './SearchResults.module.css'
 
 const SearchResults = ({ results, itemPosterSize }) => {
-  const selectBasePoster = useMemo(() => selectPosterPath, [])
-  const posterUrl = useSelector(state => selectBasePoster(state, itemPosterSize))
+  const posterUrl = useMemoizedSelector(selectPosterPath, itemPosterSize)
 
   if (!results) {
     return <p>Please wait...</p>

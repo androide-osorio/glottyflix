@@ -1,7 +1,8 @@
 import React, { useMemo } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
-import { useSearchForm } from '../common/hooks/useForm'
+import { useForm, useMemoizedSelector } from '../common/hooks'
+
 import { discover, selectDiscoverResults } from '../tmdb/store'
 
 import Search from './components/Search/Search'
@@ -18,8 +19,7 @@ const langs = [
 
 function SearchPage() {
   const dispatch = useDispatch()
-  const selectResultMemo = useMemo(() => selectDiscoverResults, [])
-  const tvShows = useSelector(state => selectResultMemo(state, 'tv'))
+  const tvShows = useMemoizedSelector(selectDiscoverResults, 'tv')
 
   const callDiscover = inputs => {
     const { language } = inputs
@@ -30,7 +30,7 @@ function SearchPage() {
     }
   }
 
-  const {inputs, handleInputChange, handleSubmit} = useSearchForm(callDiscover);
+  const {inputs, handleInputChange, handleSubmit} = useForm(callDiscover);
 
   return (
     <div className={classes.SearchPage}>
