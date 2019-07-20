@@ -1,8 +1,19 @@
 import React from 'react';
 
-const Button = ({ type, variant, click, children }) => {
+import styles from './Button.module.css'
+
+const Button = ({ className, type, variant, click, children }) => {
+  const classes = [
+    styles.Button,
+    variant === 'primary' ? styles['Button--primary'] : '',
+    variant === 'outlined' ? styles['Button--outlined'] : '',
+    className,
+  ].join(' ')
+
   return (
-    <button type={type || 'button'} onClick={click}>{children}</button>
+    <button className={classes} type={type || 'button'} onClick={click}>
+      {children}
+    </button>
   );
 };
 

@@ -1,10 +1,10 @@
 import React from 'react';
-import LanguagesList from '../LanguagesList/LanguagesList'
 
 import styles from './Search.module.css'
 import Autocomplete from '../../../common/components/Autocomplete/Autocomplete';
+import Button from '../../../common/components/Button/Button';
 
-const Search = ({ label, placeholder, languages, onChange, onSubmit }) => {
+const Search = ({ languages, onChange, onSubmit }) => {
   const langOptions = languages.map(
     lang =>({ id: lang.iso_639_1, label: lang.english_name})
   )
@@ -21,8 +21,14 @@ const Search = ({ label, placeholder, languages, onChange, onSubmit }) => {
           <Autocomplete.List id="languagesList" items={langOptions} onSelect={onChange} />
         </Autocomplete>
       </label>
-      <input className={styles.Search__button} type="submit" value="Search!" onClick={onSubmit} />
-      <input className={styles.Search__button} type="submit" value="Surprise me!" onClick={onSubmit} />
+      <section className={styles.Search__actions}>
+        <Button className={styles.Search__button} type="submit" variant="primary" click={onSubmit}>
+          <span role="img" aria-label='search'>🔍</span>Search!
+        </Button>
+        <Button className={styles.Search__button} type="submit" variant="outlined" click={onSubmit}>
+          <span role="img" aria-label='dice'>🎲</span>Surprise me!
+        </Button>
+      </section>
     </form>
   );
 };

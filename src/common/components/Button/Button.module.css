@@ -1,0 +1,19 @@
+.Button {
+  padding: 8px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 1.125rem;
+  border: 0;
+  box-sizing: border-box;
+}
+
+.Button--primary {
+  background-color: var(--accentColor);
+  color: var(--textColorInvert);
+}
+
+.Button--outlined {
+  border: 1px solid var(--accentColor);
+  color: var(--textColor);
+  background-color: transparent;
+}
