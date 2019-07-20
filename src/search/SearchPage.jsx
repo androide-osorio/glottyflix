@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux'
 
 import { useForm, useMemoizedSelector } from '../common/hooks'
@@ -30,6 +30,7 @@ function SearchPage() {
     }
   }
 
+  // eslint-disable-next-line no-unused-vars
   const {inputs, handleInputChange, handleSubmit} = useForm(callDiscover);
 
   return (

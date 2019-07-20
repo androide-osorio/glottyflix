@@ -1,4 +1,4 @@
-import { pick, prop, path, memoizeWith, identity } from 'ramda'
+import { pick, prop, path } from 'ramda'
 import { createSelector } from 'reselect'
 
 export const selectDiscover = prop('discover')

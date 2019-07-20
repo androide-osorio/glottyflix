@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { DateTime } from 'luxon'
 
 import { useMemoizedSelector } from '../common/hooks'
 import { getYear } from '../common/helpers/dates'
