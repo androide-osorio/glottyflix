@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { useSearchForm } from '../common/hooks/useForm'
@@ -18,7 +18,8 @@ const langs = [
 
 function SearchPage() {
   const dispatch = useDispatch()
-  const tvShows = useSelector(selectDiscoverResults('tv'))
+  const selectResultMemo = useMemo(() => selectDiscoverResults, [])
+  const tvShows = useSelector(state => selectResultMemo(state, 'tv'))
 
   const callDiscover = inputs => {
     const { language } = inputs
@@ -41,7 +42,7 @@ function SearchPage() {
       onChange={handleInputChange}
       onSubmit={handleSubmit} />
     <section>
-      <SearchResults results={tvShows} />
+      <SearchResults results={tvShows} itemPosterSize="w185" />
     </section>
   </div>
   );

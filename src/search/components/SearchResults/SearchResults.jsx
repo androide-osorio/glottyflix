@@ -1,14 +1,15 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 import ResultItem from '../ResultItem/ResultItem'
-import { selectDiscoverResults, selectPosterPath } from '../../../tmdb/store'
+import { selectPosterPath } from '../../../tmdb/store'
 
 import classes from './SearchResults.module.css'
 
-const SearchResults = ({ results }) => {
-  const posterPath = useSelector(selectPosterPath('w185'))
+const SearchResults = ({ results, itemPosterSize }) => {
+  const selectBasePoster = useMemo(() => selectPosterPath, [])
+  const posterUrl = useSelector(state => selectBasePoster(state, itemPosterSize))
 
   if (!results) {
     return <p>Please wait...</p>
@@ -24,7 +25,7 @@ const SearchResults = ({ results }) => {
             <Link to={`/tv-shows/${item.id}`}>
               <ResultItem
                 title={item.original_name}
-                image={`${posterPath}${item.poster_path}`} />
+                image={`${posterUrl}${item.poster_path}`} />
             </Link>
           </li>
         )}

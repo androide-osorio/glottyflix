@@ -7,25 +7,27 @@ import { buildPathForImage } from './helpers'
 export const selectConfig = prop('config')
 export const selectConfigError = pathOr(null, ['config', 'error'])
 export const selectImageMeta = compose(propOr({}, 'images'), selectConfig)
+const selectImageSize = (_, imageSize) => imageSize
 
 // -----------------------------------------------------------
 // feature selectors
-export const selectPosterPath = size => createSelector(
-  selectImageMeta,
-  buildPathForImage(size, 'poster'),
+
+export const selectPosterPath = createSelector(
+  [selectImageMeta, selectImageSize],
+  (imagesMeta, imageSize) => buildPathForImage(imageSize, 'poster', imagesMeta)
 )
 
-export const selectBackdropPath = size => createSelector(
-  selectImageMeta,
-  buildPathForImage(size, 'backdrop'),
+export const selectBackdropPath = createSelector(
+  [selectImageMeta, selectImageSize],
+  (imagesMeta, imageSize) => buildPathForImage(imageSize, 'backdrop', imagesMeta)
 )
 
-export const selectLogoPath = size => createSelector(
-  selectImageMeta,
-  buildPathForImage(size, 'logo'),
+export const selectLogoPath = createSelector(
+  [selectImageMeta, selectImageSize],
+  (imagesMeta, imageSize) => buildPathForImage(imageSize, 'logo', imagesMeta)
 )
 
-export const selectProfilePath = size => createSelector(
-  selectImageMeta,
-  buildPathForImage(size, 'profile'),
+export const selectProfilePath = createSelector(
+  [selectImageMeta, selectImageSize],
+  (imagesMeta, imageSize) => buildPathForImage(imageSize, 'profile', imagesMeta)
 )
