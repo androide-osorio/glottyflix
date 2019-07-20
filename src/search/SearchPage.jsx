@@ -3,30 +3,26 @@ import { useDispatch } from 'react-redux'
 
 import { useForm, useMemoizedSelector } from '../common/hooks'
 
-import { discover, selectDiscoverResults } from '../tmdb/store'
+import { discover, selectDiscoverResults, selectLanguagesList } from '../tmdb/store'
 
 import Search from './components/Search/Search'
 import SearchResults from './components/SearchResults/SearchResults'
 
 import classes from './SearchPage.module.css'
 
-const langs = [
-  { code: 'en', name: '🇺🇸 English' },
-  { code: 'es', name: '🇪🇸 Spanish' },
-  { code: 'fr', name: '🇫🇷 French' },
-  { code: 'de', name: '🇩🇪 German' },
-]
-
 function SearchPage() {
   const dispatch = useDispatch()
   const tvShows = useMemoizedSelector(selectDiscoverResults, 'tv')
+  const languages = useMemoizedSelector(selectLanguagesList)
 
   const callDiscover = inputs => {
     const { language } = inputs
-    const langObject = langs.find(lang => lang.name === language)
+    const langObject = languages
+      .find(lang => lang.english_name === language)
+    console.log(inputs)
 
     if (langObject) {
-      dispatch(discover({ type: 'tv', filters: { language: langObject.code } }))
+      dispatch(discover({ type: 'tv', filters: { language: langObject.iso_639_1 } }))
     }
   }
 
@@ -39,7 +35,7 @@ function SearchPage() {
     <Search
       label="I am looking for TV-Shows in "
       placeholder="Language I am learning..."
-      languages={langs}
+      languages={languages}
       onChange={handleInputChange}
       onSubmit={handleSubmit} />
     <section>

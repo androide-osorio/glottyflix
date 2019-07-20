@@ -1,4 +1,5 @@
 import React from 'react';
+import LanguagesList from '../LanguagesList/LanguagesList'
 
 import classes from './Search.module.css'
 
@@ -15,11 +16,7 @@ const Search = ({ label, placeholder, languages, onChange, onSubmit }) => {
           id="queryInput"
           placeholder={placeholder}
           onChange={onChange} />
-        <datalist id="languagesList" onChange={onChange}>
-          {languages.map(lang =>
-            <option key={lang.code} data-value={lang.code} value={lang.name} />
-          )}
-        </datalist>
+        <LanguagesList id="languagesList" languages={languages}  onChange={onChange} />
       </label>
       <input className={classes.Search__button} type="submit" value="Search!" onClick={onSubmit} />
       <input className={classes.Search__button} type="submit" value="Surprise me!" onClick={onSubmit} />

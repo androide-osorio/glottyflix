@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
-import { fetchConfig } from './tmdb/store';
+import { fetchConfig, fetchLanguages } from './tmdb/store';
 
 // stylesheets and assets
 import './App.css';
@@ -14,6 +14,7 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchConfig({}))
+    dispatch(fetchLanguages({}))
   })
 
   return (

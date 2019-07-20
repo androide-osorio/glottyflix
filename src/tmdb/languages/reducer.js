@@ -11,7 +11,7 @@ function saveEntities(state, action) {
   const langList = action.payload
   const { error, ...restState } = state
   const ids = langList.map(prop('iso_639_1'))
-  const entityMap = langList.reduce((map, lang) => ({ [lang.iso_639_1]: lang }), {})
+  const entityMap = langList.reduce((map, lang) => ({ ...map, [lang.iso_639_1]: lang }), {})
 
   return {
     ...restState,
