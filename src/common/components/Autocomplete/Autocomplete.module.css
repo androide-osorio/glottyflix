@@ -1,0 +1,30 @@
+.Autocomplete {
+  border: 0;
+  border-bottom: 2px solid white;
+  background-color: transparent;
+  font-size: 2rem;
+  padding: 0.5rem 0.5rem 0.3rem;
+  color: white;
+  display: inline-block;
+  font-weight: 700;
+}
+
+.Autocomplete:focus {
+  border-bottom-color: gold;
+  outline: none;
+}
+
+.Autocomplete::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+.Autocomplete__list {
+  background-color: white;
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--textColorInvert);
+  padding: 0.5rem;
+  border-top: 1px solid #FBF6E7;
+  border-bottom: 1px solid #FBF6E7;
+}
+

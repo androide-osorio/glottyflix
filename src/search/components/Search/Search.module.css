@@ -3,52 +3,17 @@
   font-size: 2rem;
   padding: 1rem;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .Search__title {
   font-size: 2rem;
   font-weight: 700;
-}
-
-.Search__dropdown {
-  position: relative;
-  border-radius: 0;
-  border: 0;
-  background-color: transparent;
-  font-size: 2rem;
-  padding: 0.5rem 0.5rem 0.3rem;
-  color: white;
+  margin: 1rem 0;
+  max-width: 50vmin;
   display: block;
-}
-
-.Search__dropdown::before {
-  content: " ";
-  display: block;
-  height: 3px;
-  background-color: var(--accentColor);
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-}
-
-.Search__input {
-  border: 0;
-  border-bottom: 2px solid white;
-  background-color: transparent;
-  font-size: 2rem;
-  padding: 0.5rem 0.5rem 0.3rem;
-  color: white;
-  display: block;
-  width: 50%;
-  margin: 2rem auto;
-  text-align: center;
-}
-
-.Search__input:focus,
-.Search__dropdown:focus {
-  color: white;
-  border-bottom-color: gold;
 }
 
 .Search__button {
