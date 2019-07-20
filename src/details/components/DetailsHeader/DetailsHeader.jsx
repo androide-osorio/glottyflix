@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TvShowHeader = ({ title, language, seasonsCount, episodesCount, poster, backdrop, rating }) => {
+const DetailsHeader = ({ title, language, seasonsCount, episodesCount, poster, backdrop, rating }) => {
   const backdropStyle = {
     backgroundImage: `url(${backdrop})`,
   }
@@ -15,4 +15,4 @@ const TvShowHeader = ({ title, language, seasonsCount, episodesCount, poster, ba
   );
 };
 
-export default TvShowHeader;
+export default DetailsHeader;

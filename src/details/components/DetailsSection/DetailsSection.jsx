@@ -1,6 +1,6 @@
 import React from 'react';
 
-const TvShowSection = ({ title, children }) => {
+const DetailsSection = ({ title, children }) => {
   return (
     <article>
       <h3>{title}</h3>
@@ -9,4 +9,4 @@ const TvShowSection = ({ title, children }) => {
   );
 };
 
-export default TvShowSection;
+export default DetailsSection;

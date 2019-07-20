@@ -7,7 +7,7 @@ import { fetchConfig } from './tmdb/store';
 // stylesheets and assets
 import './App.css';
 import SearchPage from './search/SearchPage';
-import { TvShowDetails } from './tv-shows';
+import { ResultDetails } from './details';
 
 function App() {
   const dispatch = useDispatch()
@@ -21,7 +21,7 @@ function App() {
       <div className="App">
         <Switch>
           <Route path="/" exact component={SearchPage} />
-          <Route path="/tv-shows/:id" component={TvShowDetails} />
+          <Route path="/tv-shows/:id" component={ResultDetails} />
         </Switch>
       </div>
     </Router>

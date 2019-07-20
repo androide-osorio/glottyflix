@@ -4,8 +4,8 @@ import { DateTime } from 'luxon'
 
 import { fetchTvShowDetails, selectTvShowWithId, selectPosterPath, selectBackdropPath, selectLogoPath, selectProfilePath } from '../tmdb/store';
 
-import TvShowHeader from './components/TvShowHeader/TvShowHeader'
-import TvShowSection from './components/TvShowSection/TvShowSection';
+import DetailsHeader from './components/DetailsHeader/DetailsHeader'
+import DetailsSection from './components/DetailsSection/DetailsSection';
 import GenreTag from './components/GenreTag/GenreTag';
 import ActorItem from './components/ActorItem/ActorItem';
 import Button from '../common/components/Button/Button';
@@ -19,7 +19,7 @@ const urls = {
   twitter: 'https://www.twitter.com/',
 }
 
-const TvShowDetails = ({ match }) => {
+const ResultDetails = ({ match }) => {
   const dispatch = useDispatch()
   const tvShow = useSelector(selectTvShowWithId(match.params.id))
   const posterPath = useSelector(selectPosterPath('w185'))
@@ -39,7 +39,7 @@ const TvShowDetails = ({ match }) => {
   return (
     <div>
       <button onClick={() => window.history.back()}>back to results</button>
-      <TvShowHeader
+      <DetailsHeader
         title={tvShow.name}
         language={tvShow.original_language}
         seasonsCount={tvShow.number_of_seasons}
@@ -49,36 +49,36 @@ const TvShowDetails = ({ match }) => {
         rating={Math.round(map(tvShow.vote_average, 0, 10, 0, 5))} />
 
       <section>
-        <TvShowSection title={"Available in"}>
+        <DetailsSection title={"Available in"}>
           {tvShow.networks.map(network => (
             <img key={network.id} src={`${logoPath}/${network.logo_path}`} alt={network.name} />
           )) }
-        </TvShowSection>
-        <TvShowSection title={"Synopsis"}>
+        </DetailsSection>
+        <DetailsSection title={"Synopsis"}>
           <h4>{DateTime.fromISO(tvShow.first_air_date).year} - {tvShow.in_production ? 'Present' : DateTime.fromISO(tvShow.last_air_date).year}</h4>
           <p>{tvShow.overview}</p>
-        </TvShowSection>
-        <TvShowSection title={"Genres"}>
+        </DetailsSection>
+        <DetailsSection title={"Genres"}>
           {tvShow.genres.map(genre => (
             <GenreTag key={genre.id}>{genre.name}</GenreTag>
           )) }
-        </TvShowSection>
-        <TvShowSection title={"Cast"}>
+        </DetailsSection>
+        <DetailsSection title={"Cast"}>
           {tvShow.credits.cast.map(actor => (
             <ActorItem profilePicture={`${profilePath}/${actor.profile_path}`} {...actor} />
           )) }
-        </TvShowSection>
-        <TvShowSection title={"Social Media"}>
+        </DetailsSection>
+        <DetailsSection title={"Social Media"}>
           {Object.entries(tvShow.external_ids).filter(([, idValue]) => idValue).map(([idKey, idValue]) => {
             const mediaName = idKey.replace('_id', '')
             const mediaBaseUrl = urls[mediaName]
 
             return <Button click={() => window.open(`${mediaBaseUrl}${idValue}`, '_blank')}>{mediaName}</Button>
           }) }
-        </TvShowSection>
+        </DetailsSection>
       </section>
     </div>
   );
 };
 
-export default TvShowDetails;
+export default ResultDetails;
