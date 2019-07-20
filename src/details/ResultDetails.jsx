@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux'
 import { DateTime } from 'luxon'
 
 import { useMemoizedSelector } from '../common/hooks'
+import { getYear } from '../common/helpers/dates'
+import { scale } from '../common/helpers/math'
 import { fetchTvShowDetails, selectTvShowWithId, selectPosterPath, selectBackdropPath, selectLogoPath, selectProfilePath } from '../tmdb/store'
 
 import DetailsHeader from './components/DetailsHeader/DetailsHeader'
@@ -10,8 +12,6 @@ import DetailsSection from './components/DetailsSection/DetailsSection'
 import GenreTag from './components/GenreTag/GenreTag'
 import ActorItem from './components/ActorItem/ActorItem'
 import Button from '../common/components/Button/Button'
-
-const map = (value, x1, y1, x2, y2) => (value - x1) * (y2 - x2) / (y1 - x1) + x2;
 
 const urls = {
   imdb: 'https://www.imdb.com/title/',
@@ -47,7 +47,7 @@ const ResultDetails = ({ match }) => {
         episodesCount={tvShow.number_of_episodes}
         poster={`${posterPath}/${tvShow.poster_path}`}
         backdrop={`${backdropPath}/${tvShow.backdrop_path}`}
-        rating={Math.round(map(tvShow.vote_average, 0, 10, 0, 5))} />
+        rating={Math.round(scale(tvShow.vote_average, 0, 10, 0, 5))} />
 
       <section>
         <DetailsSection title={"Available in"}>
@@ -56,7 +56,9 @@ const ResultDetails = ({ match }) => {
           )) }
         </DetailsSection>
         <DetailsSection title={"Synopsis"}>
-          <h4>{DateTime.fromISO(tvShow.first_air_date).year} - {tvShow.in_production ? 'Present' : DateTime.fromISO(tvShow.last_air_date).year}</h4>
+          <h4>
+            {getYear(tvShow.first_air_date)} - {tvShow.in_production ? 'Present' : getYear(tvShow.last_air_date)}
+          </h4>
           <p>{tvShow.overview}</p>
         </DetailsSection>
         <DetailsSection title={"Genres"}>
