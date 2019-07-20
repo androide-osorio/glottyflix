@@ -22,11 +22,16 @@ export const discoverEpic = actions$ => actions$.pipe(
   map(action => action.payload),
   switchMap(payload => {
     const query = {
-      with_original_language: payload.filters.language
+      with_original_language: payload.filters.language,
+      page: payload.filters.page || 1,
     }
     return callDiscoverEndpoint({ params: query }).pipe(
-      map(res => res.data.results),
-      map(list => discoverSuccess({ type: payload.type, results: list})),
+      map(res => res.data),
+      map(({ page, total_pages, results }) => discoverSuccess({
+        type: payload.type,
+        results, page,
+        totalPages: total_pages
+      })),
       catchError(error => of(discoverFail(error))),
     )
   }),

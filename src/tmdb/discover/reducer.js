@@ -14,9 +14,10 @@ function saveDiscoverQuery(state, action) {
 
 function saveDiscoverResults(state, action) {
   const { error, results: oldResults, ...restState } = state
-  const { type, results: newResults } = action.payload
+  const { type, results: newResults, ...pages } = action.payload
   const updatedResults = {
     ...oldResults,
+    ...pages,
     [type]: newResults
   }
   return { ...restState, results: updatedResults }
