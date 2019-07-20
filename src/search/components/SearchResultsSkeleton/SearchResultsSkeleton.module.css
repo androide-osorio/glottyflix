@@ -1,0 +1,25 @@
+.SearchResultsSkeleton {
+  width: 100vw;
+  height: 100vh;
+}
+
+.SearchResultsSkeleton__title {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+.SearchResultsSkeleton__results {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
+  align-items: center;
+  justify-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.SearchResultsSkeleton__item {
+  width: 185px;
+  height: 272px;
+  box-shadow: 0 4px 7px rgba(255, 255, 255, 0.2);
+}

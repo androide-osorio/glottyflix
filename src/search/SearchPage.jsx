@@ -19,7 +19,6 @@ function SearchPage() {
     const { language } = inputs
     const langObject = languages
       .find(lang => lang.english_name === language)
-    console.log(inputs)
 
     if (langObject) {
       dispatch(discover({ type: 'tv', filters: { language: langObject.iso_639_1 } }))
