@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import classes from './ResultItem.module.css'
 
@@ -6,7 +6,7 @@ const ResultItem = ({ title, image }) => {
   return (
     <figure className={classes.ResultItem}>
       <img src={image} alt={`${title} poster`}/>
-      <figcaption>
+      <figcaption className={classes.ResultItem__caption}>
         <h3 className={classes.ResultItem__title}>{title}</h3>
       </figcaption>
     </figure>
