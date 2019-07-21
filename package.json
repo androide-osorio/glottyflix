@@ -6,7 +6,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "svgr": "svgr --icon --replace-attr-values \"#000=color\" -d src/common/components/Icons src/assets/icons"
   },
   "dependencies": {
     "axios": "^0.19.0",
@@ -23,6 +24,7 @@
     "rxjs": "^6.5.2"
   },
   "devDependencies": {
+    "@svgr/cli": "^4.3.2",
     "@types/jest": "^24.0.15",
     "@types/node": "^12.6.2",
     "@types/ramda": "^0.26.15",
