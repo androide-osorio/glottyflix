@@ -1,10 +1,35 @@
 .SearchResults {
+  background-color: var(--bgColor);
+  color: white;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 4rem;
+}
+
+.SearchResults__title {
+  font-size: 3rem;
+  text-align: center;
+  margin: 0;
+  padding: 3rem;
+}
+
+.SearchResults__list {
   list-style: none;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(185px, 1fr));
   align-items: center;
   justify-items: center;
   gap: 1rem;
+  margin: 0;
+  padding: 0;
+  width: 70vw;
+}
+
+.SearchResults__item {
+  box-shadow: 0 0 7px rgba(211, 211, 211, 0.2);
 }
 
 .SearchResults__item:focus {

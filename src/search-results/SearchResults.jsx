@@ -19,7 +19,7 @@ const SearchResults = ({ match }) => {
       filters: { language: match.params.lang }
     })
     dispatch(discoverAction)
-  })
+  }, [dispatch, match.params.type, match.params.lang])
 
   const tvShows = useMemoizedSelector(selectDiscoverResults, 'tv')
   const posterUrl = useMemoizedSelector(selectPosterPath, 'w185')
@@ -29,10 +29,12 @@ const SearchResults = ({ match }) => {
   }
 
   return (
-    <>
-      <h3>found {tvShows.length} TV Shows in {match.params.id}</h3>
+    <section className={classes.SearchResults}>
+      <h3 className={classes.SearchResults__title}>
+        found {tvShows.length} TV Shows in {match.params.lang}
+      </h3>
 
-      <ul className={classes.SearchResults}>
+      <ul className={classes.SearchResults__list}>
         {tvShows.map((item) =>
           <li className={classes.SearchResults__item} key={item.id}>
             <Link to={`/tv-shows/${item.id}`}>
@@ -43,7 +45,7 @@ const SearchResults = ({ match }) => {
           </li>
         )}
       </ul>
-    </>
+    </section>
   );
 };
 
