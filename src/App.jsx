@@ -6,10 +6,13 @@ import { fetchConfig, fetchLanguages } from './tmdb/store';
 
 // external components
 import SearchPage from './search/SearchPage';
+import SearchResults from './search-results/SearchResults';
+
 import { ResultDetails } from './details';
 
 // stylesheets and assets
 import styles from './App.module.css';
+
 
 function App() {
   const dispatch = useDispatch()
@@ -24,6 +27,7 @@ function App() {
       <div className={styles.App}>
         <Switch>
           <Route path="/" exact component={SearchPage} />
+          <Route path="/search/:type/:lang" exact component={SearchResults} />
           <Route path="/tv-shows/:id" component={ResultDetails} />
         </Switch>
       </div>
