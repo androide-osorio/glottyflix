@@ -1,4 +1,5 @@
-import React from 'react';
+import React from 'react'
+import  { Score } from '../../../common/components'
 
 const DetailsHeader = ({ title, language, seasonsCount, episodesCount, poster, backdrop, rating }) => {
   const backdropStyle = {
@@ -8,7 +9,7 @@ const DetailsHeader = ({ title, language, seasonsCount, episodesCount, poster, b
     <header style={backdropStyle}>
       <h2>{title}</h2>
       <img src={poster} alt={title} />
-      <span>Rating: {rating}</span>
+      <span><Score value={rating} /></span>
       <span>{language}</span>
       <span>{seasonsCount} seasons, {episodesCount} episodes</span>
     </header>
