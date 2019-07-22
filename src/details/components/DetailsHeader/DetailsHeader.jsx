@@ -1,19 +1,27 @@
 import React from 'react'
 import  { Score } from '../../../common/components'
 
-const DetailsHeader = ({ title, language, seasonsCount, episodesCount, backdrop, rating, ...rest }) => {
+import classes from './Detailsheader.module.css'
+
+const DetailsHeader = ({ title, language, seasonsCount, episodesCount, backdrop, rating, className }) => {
   const backdropStyle = {
     backgroundImage: `url(${backdrop})`,
   }
-  return (
-    <header style={backdropStyle} {...rest}>
-      <button onClick={() => window.history.back()}>back to results</button>
+  const rootClasses = [classes.DetailsHeader, className].join(' ')
 
-      <div>
+  return (
+    <header style={backdropStyle} className={rootClasses}>
+      <button
+        className={classes.DetailsHeader__closeButton}
+        onClick={() => window.history.back()}>
+        back to results
+      </button>
+
+      <div className={classes.DetailsHeader__left}>
         <h2>{title}</h2>
-        <span><Score value={rating} /></span>
+        <Score value={rating} />
       </div>
-      <div>
+      <div className={classes.DetailsHeader__right}>
         <span>{language}</span>
         <span>{seasonsCount} seasons, {episodesCount} episodes</span>
       </div>
