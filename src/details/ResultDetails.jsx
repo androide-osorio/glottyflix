@@ -4,13 +4,16 @@ import { useDispatch } from 'react-redux'
 import { useMemoizedSelector } from '../common/hooks'
 import { getYear } from '../common/helpers/dates'
 import { scale } from '../common/helpers/math'
+import Button from '../common/components/Button/Button'
+
 import { fetchTvShowDetails, selectTvShowWithId, selectPosterPath, selectBackdropPath, selectLogoPath, selectProfilePath } from '../tmdb/store'
 
 import DetailsHeader from './components/DetailsHeader/DetailsHeader'
 import DetailsSection from './components/DetailsSection/DetailsSection'
 import GenreTag from './components/GenreTag/GenreTag'
 import ActorItem from './components/ActorItem/ActorItem'
-import Button from '../common/components/Button/Button'
+
+import classes from './ResultDetails.module.css';
 
 const urls = {
   imdb: 'https://www.imdb.com/title/',
@@ -37,9 +40,9 @@ const ResultDetails = ({ match }) => {
   }
 
   return (
-    <div>
-      <button onClick={() => window.history.back()}>back to results</button>
+    <section className={classes.ResultDetails}>
       <DetailsHeader
+        className={classes.Resultdetails__header}
         title={tvShow.name}
         language={tvShow.original_language}
         seasonsCount={tvShow.number_of_seasons}
@@ -48,12 +51,25 @@ const ResultDetails = ({ match }) => {
         backdrop={`${backdropPath}/${tvShow.backdrop_path}`}
         rating={Math.round(scale(tvShow.vote_average, 0, 10, 0, 5))} />
 
-      <section>
+      <aside className={classes.Resultdetails__sidebar}>
+        <img src={`${posterPath}/${tvShow.poster_path}`} alt={`${tvShow.name} poster`} />
+
         <DetailsSection title={"Available in"}>
           {tvShow.networks.map(network => (
             <img key={network.id} src={`${logoPath}/${network.logo_path}`} alt={network.name} />
           )) }
         </DetailsSection>
+        <DetailsSection title={"Social Media"}>
+          {Object.entries(tvShow.external_ids).filter(([, idValue]) => idValue).map(([idKey, idValue]) => {
+            const mediaName = idKey.replace('_id', '')
+            const mediaBaseUrl = urls[mediaName]
+
+            return <Button key={idValue} click={() => window.open(`${mediaBaseUrl}${idValue}`, '_blank')}>{mediaName}</Button>
+          }) }
+        </DetailsSection>
+      </aside>
+
+      <section className={classes.Resultdetails__content}>
         <DetailsSection title={"Synopsis"}>
           <h4>
             {getYear(tvShow.first_air_date)} - {tvShow.in_production ? 'Present' : getYear(tvShow.last_air_date)}
@@ -70,16 +86,8 @@ const ResultDetails = ({ match }) => {
             <ActorItem key={actor.id} profilePicture={`${profilePath}/${actor.profile_path}`} {...actor} />
           )) }
         </DetailsSection>
-        <DetailsSection title={"Social Media"}>
-          {Object.entries(tvShow.external_ids).filter(([, idValue]) => idValue).map(([idKey, idValue]) => {
-            const mediaName = idKey.replace('_id', '')
-            const mediaBaseUrl = urls[mediaName]
-
-            return <Button key={idValue} click={() => window.open(`${mediaBaseUrl}${idValue}`, '_blank')}>{mediaName}</Button>
-          }) }
-        </DetailsSection>
       </section>
-    </div>
+    </section>
   );
 };
 
