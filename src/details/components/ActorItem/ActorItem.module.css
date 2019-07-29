@@ -1,0 +1,37 @@
+.ActorItem {
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.ActorItem__profilePicture {
+  --dimensions: 6rem;
+  border-radius: 100%;
+  border: 2px solid white;
+  overflow: hidden;
+  width: var(--dimensions);
+  height: var(--dimensions);
+}
+
+.ActorItem__profilePicture img {
+  width: 100%;
+}
+
+.ActorItem__actorName {
+  font-size: 1rem;
+  font-weight: 600;
+  margin: 0;
+  margin-top: 0.5rem;
+  text-align: center;
+  text-align-last: center;
+}
+
+.ActorItem__characterName {
+  font-size: 0.75rem;
+  font-weight: 300;
+  margin: 0;
+  margin-top: 0.5rem;
+  text-align: center;
+  text-align-last: center;
+}

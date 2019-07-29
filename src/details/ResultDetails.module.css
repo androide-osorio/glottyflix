@@ -9,16 +9,23 @@
   grid-gap: 1.5rem;
   max-width: 80vmax;
   margin: 0 auto;
+  text-align-last: left;
 }
 
-.Resultdetails__header {
+.ResultDetails__header {
   grid-area: header;
 }
 
-.Resultdetails__sidebar {
+.ResultDetails__sidebar {
   grid-area: sidebar;
 }
 
-.Resultdetails__content {
+.ResultDetails__content {
   grid-area: content;
+}
+
+.ResultDetails__castList {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
+  gap: 1rem;
 }

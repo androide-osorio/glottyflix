@@ -35,6 +35,9 @@ const ResultDetails = ({ match }) => {
   const logoPath = useMemoizedSelector(selectLogoPath, 'w92')
   const profilePath = useMemoizedSelector(selectProfilePath, 'w185')
 
+  const sortedCast = tvShow ? tvShow.credits.cast.slice().sort((a, b) => b.order - a.order) : []
+  console.log(sortedCast)
+
   if (!tvShow) {
     return <p>Please wait...</p>
   }
@@ -42,7 +45,7 @@ const ResultDetails = ({ match }) => {
   return (
     <section className={classes.ResultDetails}>
       <DetailsHeader
-        className={classes.Resultdetails__header}
+        className={classes.ResultDetails__header}
         title={tvShow.name}
         language={tvShow.original_language}
         seasonsCount={tvShow.number_of_seasons}
@@ -51,7 +54,7 @@ const ResultDetails = ({ match }) => {
         backdrop={`${backdropPath}/${tvShow.backdrop_path}`}
         rating={Math.round(scale(tvShow.vote_average, 0, 10, 0, 5))} />
 
-      <aside className={classes.Resultdetails__sidebar}>
+      <aside className={classes.ResultDetails__sidebar}>
         <img src={`${posterPath}/${tvShow.poster_path}`} alt={`${tvShow.name} poster`} />
 
         <DetailsSection title={"Available in"}>
@@ -69,7 +72,7 @@ const ResultDetails = ({ match }) => {
         </DetailsSection>
       </aside>
 
-      <section className={classes.Resultdetails__content}>
+      <section className={classes.ResultDetails__content}>
         <DetailsSection title={"Synopsis"}>
           <h4>
             {getYear(tvShow.first_air_date)} - {tvShow.in_production ? 'Present' : getYear(tvShow.last_air_date)}
@@ -82,9 +85,11 @@ const ResultDetails = ({ match }) => {
           )) }
         </DetailsSection>
         <DetailsSection title={"Cast"}>
-          {tvShow.credits.cast.map(actor => (
+        <div className={classes.ResultDetails__castList}>
+          { sortedCast.map(actor => (
             <ActorItem key={actor.id} profilePicture={`${profilePath}/${actor.profile_path}`} {...actor} />
           )) }
+        </div>
         </DetailsSection>
       </section>
     </section>
