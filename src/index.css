@@ -13,6 +13,10 @@
   color: var(--neutralColor);
 }
 
+* {
+  box-sizing: border-box;
+}
+
 html {
   font-size: var(--baseFontSize)
 }

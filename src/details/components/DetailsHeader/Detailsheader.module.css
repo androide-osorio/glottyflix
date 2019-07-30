@@ -2,8 +2,13 @@
   background-size: cover;
   background-position: center;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 0 1.5rem;
+  grid-auto-rows: min-content;
+  align-content: end;
   position: relative;
+  padding-bottom: 1rem;
 }
 
 .DetailsHeader::after {
@@ -30,11 +35,16 @@
   z-index: 10;
 }
 
+.DetailsHeader__title {
+  margin: 0;
+}
+
 .DetailsHeader__left,
 .DetailsHeader__right {
   align-self: end;
   z-index: 2;
-  padding: 1rem;
+  grid-column: 2;
+
 }
 
 .DetailsHeader__left {
@@ -43,6 +53,4 @@
 }
 
 .DetailsHeader__right {
-  text-align: right;
-  justify-self: end;
 }

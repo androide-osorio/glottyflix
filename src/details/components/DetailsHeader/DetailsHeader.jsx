@@ -18,7 +18,7 @@ const DetailsHeader = ({ title, language, seasonsCount, episodesCount, backdrop,
       </button>
 
       <div className={classes.DetailsHeader__left}>
-        <h2>{title}</h2>
+        <h2 className={classes.DetailsHeader__title}>{title}</h2>
         <Score value={rating} />
       </div>
       <div className={classes.DetailsHeader__right}>

@@ -36,7 +36,6 @@ const ResultDetails = ({ match }) => {
   const profilePath = useMemoizedSelector(selectProfilePath, 'w185')
 
   const sortedCast = tvShow ? tvShow.credits.cast.slice().sort((a, b) => b.order - a.order) : []
-  console.log(sortedCast)
 
   if (!tvShow) {
     return <p>Please wait...</p>
@@ -62,6 +61,11 @@ const ResultDetails = ({ match }) => {
             <img key={network.id} src={`${logoPath}/${network.logo_path}`} alt={network.name} />
           )) }
         </DetailsSection>
+        <DetailsSection title={"Genres"}>
+          {tvShow.genres.map(genre => (
+            <GenreTag key={genre.id}>{genre.name}</GenreTag>
+          )) }
+        </DetailsSection>
         <DetailsSection title={"Social Media"}>
           {Object.entries(tvShow.external_ids).filter(([, idValue]) => idValue).map(([idKey, idValue]) => {
             const mediaName = idKey.replace('_id', '')
@@ -78,11 +82,6 @@ const ResultDetails = ({ match }) => {
             {getYear(tvShow.first_air_date)} - {tvShow.in_production ? 'Present' : getYear(tvShow.last_air_date)}
           </h4>
           <p>{tvShow.overview}</p>
-        </DetailsSection>
-        <DetailsSection title={"Genres"}>
-          {tvShow.genres.map(genre => (
-            <GenreTag key={genre.id}>{genre.name}</GenreTag>
-          )) }
         </DetailsSection>
         <DetailsSection title={"Cast"}>
         <div className={classes.ResultDetails__castList}>
