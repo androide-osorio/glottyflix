@@ -31,8 +31,16 @@
 .DetailsHeader__closeButton {
   position: absolute;
   top: 0;
-  right: 0;
+  right: 1rem;
   z-index: 10;
+  background: transparent;
+  border: 0;
+  font-size: 4rem;
+  color: white;
+  font-weight: 300;
+  line-height: 0.7;
+  padding: 0;
+  cursor: pointer;
 }
 
 .DetailsHeader__title {

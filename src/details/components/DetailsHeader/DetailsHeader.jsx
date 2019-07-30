@@ -14,7 +14,8 @@ const DetailsHeader = ({ title, language, seasonsCount, episodesCount, backdrop,
       <button
         className={classes.DetailsHeader__closeButton}
         onClick={() => window.history.back()}>
-        back to results
+        <span className="srOnly">back to results</span>
+        &times;
       </button>
 
       <div className={classes.DetailsHeader__left}>
@@ -22,7 +23,7 @@ const DetailsHeader = ({ title, language, seasonsCount, episodesCount, backdrop,
         <Score value={rating} />
       </div>
       <div className={classes.DetailsHeader__right}>
-        <span>{language}</span>
+        <span>{language ? language.english_name : ''}</span><br/>
         <span>{seasonsCount} seasons, {episodesCount} episodes</span>
       </div>
     </header>

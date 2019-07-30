@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import { compose, propOr, pathOr, sortWith, descend } from 'ramda'
 import { useDispatch } from 'react-redux'
 
 import { useMemoizedSelector } from '../common/hooks'
@@ -6,7 +7,17 @@ import { getYear } from '../common/helpers/dates'
 import { scale } from '../common/helpers/math'
 import Button from '../common/components/Button/Button'
 
-import { fetchTvShowDetails, selectTvShowWithId, selectPosterPath, selectBackdropPath, selectLogoPath, selectProfilePath } from '../tmdb/store'
+import { selectLanguageWithCode } from '../tmdb/languages/selectors';
+
+import { fetchTvShowDetails } from '../tmdb/tv-shows/actions'
+import { selectTvShowWithId } from '../tmdb/tv-shows/selectors'
+
+import {
+  selectPosterPath,
+  selectBackdropPath,
+  selectLogoPath,
+  selectProfilePath
+} from '../tmdb/configuration/selectors'
 
 import DetailsHeader from './components/DetailsHeader/DetailsHeader'
 import DetailsSection from './components/DetailsSection/DetailsSection'
@@ -22,6 +33,10 @@ const urls = {
   twitter: 'https://www.twitter.com/',
 }
 
+const sortByProperty = sortWith([
+  descend(pathOr(0, ['order']))
+])
+
 const ResultDetails = ({ match }) => {
   const dispatch = useDispatch()
 
@@ -35,7 +50,10 @@ const ResultDetails = ({ match }) => {
   const logoPath = useMemoizedSelector(selectLogoPath, 'w92')
   const profilePath = useMemoizedSelector(selectProfilePath, 'w185')
 
-  const sortedCast = tvShow ? tvShow.credits.cast.slice().sort((a, b) => b.order - a.order) : []
+  const sortedCast = sortByProperty(pathOr([], ['credits', 'cast'], tvShow))
+  const language = useMemoizedSelector(
+    selectLanguageWithCode, propOr('xx', 'original_language', tvShow)
+  )
 
   if (!tvShow) {
     return <p>Please wait...</p>
@@ -46,7 +64,7 @@ const ResultDetails = ({ match }) => {
       <DetailsHeader
         className={classes.ResultDetails__header}
         title={tvShow.name}
-        language={tvShow.original_language}
+        language={language}
         seasonsCount={tvShow.number_of_seasons}
         episodesCount={tvShow.number_of_episodes}
         poster={`${posterPath}/${tvShow.poster_path}`}

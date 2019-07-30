@@ -12,5 +12,5 @@ export const selectLanguagesList = createSelector(
 export const selectLanguageWithCode = createSelector(
   selectLanguages,
   (_, code) => code,
-  prop
+  (state, code) => prop(code, state),
 )
