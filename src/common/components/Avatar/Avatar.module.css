@@ -1,0 +1,21 @@
+.Avatar {
+  --dimensions: 6rem;
+  border-radius: 100%;
+  border: 2px solid white;
+  overflow: hidden;
+  width: var(--dimensions);
+  height: var(--dimensions);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--accentColor);
+}
+
+.Avatar__initials {
+  font-size: 2rem;
+  letter-spacing: 0.5rem;
+  text-align: center;
+  margin: 0;
+  text-align-last: center;
+}

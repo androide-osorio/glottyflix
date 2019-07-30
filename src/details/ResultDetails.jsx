@@ -104,7 +104,7 @@ const ResultDetails = ({ match }) => {
         <DetailsSection title={"Cast"}>
         <div className={classes.ResultDetails__castList}>
           { sortedCast.map(actor => (
-            <ActorItem key={actor.id} profilePicture={`${profilePath}/${actor.profile_path}`} {...actor} />
+            <ActorItem key={actor.id} profilePicture={actor.profile_path ? `${profilePath}/${actor.profile_path}` : null} {...actor} />
           )) }
         </div>
         </DetailsSection>
