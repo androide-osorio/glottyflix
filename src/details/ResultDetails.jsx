@@ -85,11 +85,17 @@ const ResultDetails = ({ match }) => {
           )) }
         </DetailsSection>
         <DetailsSection title={"Social Media"}>
-          {Object.entries(tvShow.external_ids).filter(([, idValue]) => idValue).map(([idKey, idValue]) => {
+          {Object.entries(tvShow.external_ids).filter(([, idValue]) => idValue).filter(([idKey, ]) => urls[idKey.replace('_id', '')]).map(([idKey, idValue]) => {
             const mediaName = idKey.replace('_id', '')
             const mediaBaseUrl = urls[mediaName]
 
-            return <Button key={idValue} click={() => window.open(`${mediaBaseUrl}${idValue}`, '_blank')}>{mediaName}</Button>
+            return <Button
+              key={idValue}
+              href={`${mediaBaseUrl}${idValue}`}
+              target="_blank"
+              variant="primary">
+                {mediaName}
+            </Button>
           }) }
         </DetailsSection>
       </aside>

@@ -5,6 +5,7 @@
   font-size: 1.125rem;
   border: 0;
   box-sizing: border-box;
+  text-decoration: none;
 }
 
 .Button--primary {
