@@ -30,7 +30,10 @@
 .ResultDetails__content {
   grid-area: content;
   padding-right: 1.5rem;
+}
 
+.ResultDetails__poster {
+  max-width: 85%;
 }
 
 .ResultDetails__castList {

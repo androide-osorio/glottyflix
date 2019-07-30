@@ -30,7 +30,7 @@ const ResultDetails = ({ match }) => {
   }, [dispatch, match.params.id])
 
   const tvShow = useMemoizedSelector(selectTvShowWithId, match.params.id)
-  const posterPath = useMemoizedSelector(selectPosterPath, 'w185')
+  const posterPath = useMemoizedSelector(selectPosterPath, 'w342')
   const backdropPath = useMemoizedSelector(selectBackdropPath, 'original')
   const logoPath = useMemoizedSelector(selectLogoPath, 'w92')
   const profilePath = useMemoizedSelector(selectProfilePath, 'w185')
@@ -54,7 +54,7 @@ const ResultDetails = ({ match }) => {
         rating={Math.round(scale(tvShow.vote_average, 0, 10, 0, 5))} />
 
       <aside className={classes.ResultDetails__sidebar}>
-        <img src={`${posterPath}/${tvShow.poster_path}`} alt={`${tvShow.name} poster`} />
+        <img src={`${posterPath}/${tvShow.poster_path}`} alt={`${tvShow.name} poster`} className={classes.ResultDetails__poster} />
 
         <DetailsSection title={"Available in"}>
           {tvShow.networks.map(network => (

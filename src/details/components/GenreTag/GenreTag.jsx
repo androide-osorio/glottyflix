@@ -1,8 +1,9 @@
-import React from 'react';
+import React from 'react'
+import classes from './GenreTag.module.css'
 
 const GenreTag = ({ children }) => {
   return (
-    <span>{ children }</span>
+    <span className={classes.GenreTag}>{ children }</span>
   );
 };
 
