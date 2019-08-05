@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { compose, propOr, pathOr, sortWith, descend } from 'ramda'
+import { propOr, pathOr, sortWith, descend } from 'ramda'
 import { useDispatch } from 'react-redux'
 
 import { useMemoizedSelector } from '../common/hooks'
@@ -7,17 +7,16 @@ import { getYear } from '../common/helpers/dates'
 import { scale } from '../common/helpers/math'
 import Button from '../common/components/Button/Button'
 
-import { selectLanguageWithCode } from '../tmdb/languages/selectors';
-
-import { fetchTvShowDetails } from '../tmdb/tv-shows/actions'
-import { selectTvShowWithId } from '../tmdb/tv-shows/selectors'
-
 import {
   selectPosterPath,
   selectBackdropPath,
   selectLogoPath,
   selectProfilePath
 } from '../tmdb/configuration/selectors'
+import { selectLanguageWithCode } from '../tmdb/languages/selectors'
+import { selectTvShowWithId } from '../tmdb/tv-shows/selectors'
+import { fetchTvShowDetails } from '../tmdb/tv-shows/actions'
+import { externalIdsUrls } from '../tmdb/constants/external-ids'
 
 import DetailsHeader from './components/DetailsHeader/DetailsHeader'
 import DetailsSection from './components/DetailsSection/DetailsSection'
@@ -25,13 +24,6 @@ import GenreTag from './components/GenreTag/GenreTag'
 import ActorItem from './components/ActorItem/ActorItem'
 
 import classes from './ResultDetails.module.css';
-
-const urls = {
-  imdb: 'https://www.imdb.com/title/',
-  facebook: 'https://www.facebook.com/',
-  instagram: 'https://www.instagram.com/',
-  twitter: 'https://www.twitter.com/',
-}
 
 const sortByProperty = sortWith([
   descend(pathOr(0, ['order']))
@@ -85,7 +77,7 @@ const ResultDetails = ({ match }) => {
           )) }
         </DetailsSection>
         <DetailsSection title={"Social Media"}>
-          {Object.entries(tvShow.external_ids).filter(([, idValue]) => idValue).filter(([idKey, ]) => urls[idKey.replace('_id', '')]).map(([idKey, idValue]) => {
+          {Object.entries(tvShow.external_ids).filter(([, idValue]) => idValue).filter(([idKey, ]) => externalIdsUrls[idKey.replace('_id', '')]).map(([idKey, idValue]) => {
             const mediaName = idKey.replace('_id', '')
             const mediaBaseUrl = urls[mediaName]
 
