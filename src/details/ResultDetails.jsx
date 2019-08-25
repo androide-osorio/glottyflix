@@ -22,6 +22,7 @@ import DetailsHeader from './components/DetailsHeader/DetailsHeader'
 import DetailsSection from './components/DetailsSection/DetailsSection'
 import GenreTag from './components/GenreTag/GenreTag'
 import ActorItem from './components/ActorItem/ActorItem'
+import TrailerItem from './components/TrailerItem/TrailerItem'
 
 import classes from './ResultDetails.module.css';
 
@@ -92,11 +93,7 @@ const ResultDetails = ({ match }) => {
           <p>{tvShow.overview}</p>
         </DetailsSection>
         <DetailsSection title="Trailers">
-        {tvShow.videos.results.map(video => (
-          <a href={`https://youtu.be/${video.key}`} target="_blank">
-            <img src={`https://img.youtube.com/vi/${video.key}/hqdefault.jpg`} alt={video.name} />
-          </a>
-        ))}
+        {tvShow.videos.results.map(video => <TrailerItem {...video} videoId={video.key} />)}
         </DetailsSection>
         <DetailsSection title={"Cast"}>
         <div className={classes.ResultDetails__castList}>
