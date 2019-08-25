@@ -35,6 +35,19 @@
   max-width: 85%;
 }
 
+.ResultDetails__trailersList {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.ResultDetails__trailersList > * {
+  margin: 0 1rem;
+}
+
+.ResultDetails__trailersList > *:first-child {
+  margin-left: 0;
+}
+
 .ResultDetails__castList {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));

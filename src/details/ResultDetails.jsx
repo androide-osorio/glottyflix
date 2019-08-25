@@ -93,7 +93,9 @@ const ResultDetails = ({ match }) => {
           <p>{tvShow.overview}</p>
         </DetailsSection>
         <DetailsSection title="Trailers">
-        {tvShow.videos.results.map(video => <TrailerItem {...video} videoId={video.key} />)}
+          <div className={classes.ResultDetails__trailersList}>
+            {tvShow.videos.results.map(video => <TrailerItem {...video} videoId={video.key} />)}
+          </div>
         </DetailsSection>
         <DetailsSection title={"Cast"}>
         <div className={classes.ResultDetails__castList}>
