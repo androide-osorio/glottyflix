@@ -16,7 +16,7 @@ import {
 import { selectLanguageWithCode } from '../tmdb/languages/selectors'
 import { selectTvShowWithId } from '../tmdb/tv-shows/selectors'
 import { fetchTvShowDetails } from '../tmdb/tv-shows/actions'
-import { externalIdsUrls } from '../tmdb/constants/external-ids'
+import { buildUrlsForIds } from '../tmdb/external-ids';
 
 import DetailsHeader from './components/DetailsHeader/DetailsHeader'
 import DetailsSection from './components/DetailsSection/DetailsSection'
@@ -50,6 +50,7 @@ const ResultDetails = ({ match }) => {
   if (!tvShow) {
     return <p>Please wait...</p>
   }
+  const urls = buildUrlsForIds(tvShow.external_ids)
 
   return (
     <section className={classes.ResultDetails}>
@@ -59,7 +60,6 @@ const ResultDetails = ({ match }) => {
         language={language}
         seasonsCount={tvShow.number_of_seasons}
         episodesCount={tvShow.number_of_episodes}
-        poster={`${posterPath}/${tvShow.poster_path}`}
         backdrop={`${backdropPath}/${tvShow.backdrop_path}`}
         rating={Math.round(scale(tvShow.vote_average, 0, 10, 0, 5))} />
 
@@ -77,18 +77,13 @@ const ResultDetails = ({ match }) => {
           )) }
         </DetailsSection>
         <DetailsSection title={"Social Media"}>
-          {Object.entries(tvShow.external_ids).filter(([, idValue]) => idValue).filter(([idKey, ]) => externalIdsUrls[idKey.replace('_id', '')]).map(([idKey, idValue]) => {
-            const mediaName = idKey.replace('_id', '')
-            const mediaBaseUrl = urls[mediaName]
-
-            return <Button
-              key={idValue}
-              href={`${mediaBaseUrl}${idValue}`}
+          { Object.entries(urls).map(([key, url]) => (
+            <Button key={key} href={url}
               target="_blank"
               variant="primary">
-                {mediaName}
+                {key}
             </Button>
-          }) }
+          )) }
         </DetailsSection>
       </aside>
 
