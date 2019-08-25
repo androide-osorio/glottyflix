@@ -8,7 +8,6 @@
   grid-template-rows: 16rem 2fr;
   grid-template-columns: 1fr 2fr;
   grid-gap: 1.5rem;
-  max-width: 50vmax;
   margin: 0 auto;
   text-align-last: left;
 }

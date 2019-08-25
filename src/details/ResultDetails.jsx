@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { propOr, pathOr, sortWith, descend } from 'ramda'
+import { propOr, pathOr, sortBy } from 'ramda'
 import { useDispatch } from 'react-redux'
 
 import { useMemoizedSelector } from '../common/hooks'
@@ -25,10 +25,6 @@ import ActorItem from './components/ActorItem/ActorItem'
 
 import classes from './ResultDetails.module.css';
 
-const sortByProperty = sortWith([
-  descend(pathOr(0, ['order']))
-])
-
 const ResultDetails = ({ match }) => {
   const dispatch = useDispatch()
 
@@ -42,7 +38,6 @@ const ResultDetails = ({ match }) => {
   const logoPath = useMemoizedSelector(selectLogoPath, 'w92')
   const profilePath = useMemoizedSelector(selectProfilePath, 'w185')
 
-  const sortedCast = sortByProperty(pathOr([], ['credits', 'cast'], tvShow))
   const language = useMemoizedSelector(
     selectLanguageWithCode, propOr('xx', 'original_language', tvShow)
   )
@@ -50,6 +45,8 @@ const ResultDetails = ({ match }) => {
   if (!tvShow) {
     return <p>Please wait...</p>
   }
+
+  const sortedCast = sortBy(propOr(0, 'order'), pathOr([], ['credits', 'cast'], tvShow))
   const urls = buildUrlsForIds(tvShow.external_ids)
 
   return (
