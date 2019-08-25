@@ -91,6 +91,13 @@ const ResultDetails = ({ match }) => {
           </h4>
           <p>{tvShow.overview}</p>
         </DetailsSection>
+        <DetailsSection title="Trailers">
+        {tvShow.videos.results.map(video => (
+          <a href={`https://youtu.be/${video.key}`} target="_blank">
+            <img src={`https://img.youtube.com/vi/${video.key}/hqdefault.jpg`} alt={video.name} />
+          </a>
+        ))}
+        </DetailsSection>
         <DetailsSection title={"Cast"}>
         <div className={classes.ResultDetails__castList}>
           { sortedCast.map(actor => (
